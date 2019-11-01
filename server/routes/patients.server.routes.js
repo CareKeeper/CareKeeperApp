@@ -25,7 +25,7 @@ router.route('/')
 router.route('/:patientId')
   .get(patients.read)
   .put(patients.update)
-  //.delete(listings.delete);
+  .delete(patients.delete);
 
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle

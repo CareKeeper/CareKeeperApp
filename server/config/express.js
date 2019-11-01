@@ -3,7 +3,8 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    patientsRouter = require('../routes/patients.server.routes');
+    patientsRouter = require('../routes/patients.server.routes'),
+		cors = require('cors');
 
 module.exports.init = () => {
     /*
@@ -21,6 +22,8 @@ module.exports.init = () => {
 
     // enable request logging for development debugging
     app.use(morgan('dev'));
+
+		app.use(cors());
 
     // body parsing middleware
     app.use(bodyParser.json());

@@ -49,21 +49,21 @@ exports.update = function(req, res) {
 
 };
 
-// /* Delete a listing */
-// exports.delete = function(req, res) {
-//   var patient = req.patient;
-//   /* Add your code to remove the listins */
-// 	Listing.deleteOne({code: listing.code}, function (err) {
-// 		if (err) {
-// 			console.log(err);
-// 			res.status(400).send(err);
-// 		} else {
-// 			res.status(200);
-// 			res.json();
-// 		}
-// 	});
-//
-// };
+/* Delete a listing */
+exports.delete = function(req, res) {
+  var patient = req.patient;
+  /* Add your code to remove the listins */
+	Patient.deleteOne({_id: patient._id}, function (err) {
+		if (err) {
+			console.log(err);
+			res.status(400).send(err);
+		} else {
+			res.status(200);
+			res.json();
+		}
+	});
+
+};
 
 /* Retreive all the directory patients, sorted alphabetically by patient name */
 exports.list = function(req, res) {
