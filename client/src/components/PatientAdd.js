@@ -4,7 +4,7 @@ import axios from 'axios';
 class PatientAdd extends React.Component {
 	addPatient() {
 		const patient = {nickname: this.refs.nicknameText.value,
-							careManager: this.refs.careManagerText.value,
+							careManager: this.props.currentManager,
 							medications: []};
 
 		axios.post('http://localhost:5000/api/patients/', patient)
@@ -22,8 +22,6 @@ class PatientAdd extends React.Component {
 				<div class="form-group">
 					<label>Nickname</label>
 					<input class="form-control" ref="nicknameText" placeholder="ABC" />
-					<label>Care Manager</label>
-					<input class="form-control" ref="careManagerText" placeholder="ABC" />
 				</div>
 				<button type="button" class="btn btn-primary" onClick={this.addPatient.bind(this)}>Add</button>
 			</div></div>

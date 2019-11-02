@@ -12,7 +12,7 @@ var patientSchema = new Schema({
   /* Your code for a schema here */
   //Check out - https://mongoosejs.com/docs/guide.html
   nickname: {type: String, required: true},
-	careManager: String,
+	careManager: Schema.Types.ObjectId,
 	medications: [medicationSchema],
   created_at: Date,
   updated_at: Date

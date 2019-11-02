@@ -1,7 +1,8 @@
 
 /* Dependencies */
 var mongoose = require('mongoose'),
-    Patient = require('../models/patients.server.model.js')
+    Patient = require('../models/patients.server.model.js'),
+    Manager = require('../models/managers.server.model.js');
 
 
 /* Create a patient */
@@ -68,6 +69,19 @@ exports.delete = function(req, res) {
 /* Retreive all the directory patients, sorted alphabetically by patient name */
 exports.list = function(req, res) {
 	Patient.find({}, function(err, result) {
+		if (err) {
+			console.log(err);
+			res.status(400).send(err);
+		} else {
+			res.json(result);
+		}
+});
+};
+
+exports.byManager = function(req, res) {
+	const managerID = req.params.managerID;
+
+	Patient.find({careManager: managerID}, function(err, result) {
 		if (err) {
 			console.log(err);
 			res.status(400).send(err);

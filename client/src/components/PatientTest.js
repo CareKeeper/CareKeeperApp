@@ -1,21 +1,31 @@
 import React from 'react';
 import axios from 'axios';
 import PatientAdd from './PatientAdd';
+import ManagerAdd from './ManagerAdd';
+import ManagerSelect from './ManagerSelect';
 import PatientShowAll from './PatientShowAll';
+import ManagerShowPatients from './ManagerShowPatients';
 
 class PatientTest extends React.Component {
+	state = {
+		currentManager: ""
+	}
 
+	changeCurrentManager(_id) {
+		this.setState(
+			{
+				currentManager: _id
+			});
+	}
 
 	render() {
-		//You will need to save the value from the textbox and update it as it changes
-		//You will need the onChange value for the input tag to capture the textbox value
-
-
 
 		return (
 				<div>
-				<PatientAdd />
-				<PatientShowAll />
+				<ManagerAdd />
+				<ManagerSelect changeCurrentManager={this.changeCurrentManager.bind(this)}/>
+				<PatientAdd currentManager={this.state.currentManager}/>
+				<ManagerShowPatients currentManager={this.state.currentManager}/>
 				</div>
 		);
 	}

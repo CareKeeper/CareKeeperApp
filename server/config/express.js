@@ -4,6 +4,7 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     patientsRouter = require('../routes/patients.server.routes'),
+    managersRouter = require('../routes/managers.server.routes'),
 		cors = require('cors');
 
 module.exports.init = () => {
@@ -30,6 +31,7 @@ module.exports.init = () => {
 
     // add a router
     app.use('/api/patients', patientsRouter);
+    app.use('/api/managers', managersRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files

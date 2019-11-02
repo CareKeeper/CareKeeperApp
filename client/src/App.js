@@ -6,7 +6,6 @@ import Header from "./components/Header/Header"
 import PatientTest from "./components/PatientTest"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
 const App = () => {
 	// Can use this switch statement to have a "single page app" that shows different things based on the url
   return (
@@ -14,7 +13,9 @@ const App = () => {
       <Header />
 
       <Switch>
-        <Route exact path="/PatientTestPage"> <PatientTest /> </Route>
+        <Route exact path="/PatientTestPage">
+					<PatientTest />
+				</Route>
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
