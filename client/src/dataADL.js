@@ -59,98 +59,94 @@ export default [
         task: 'Wash/Dry/Fold Laundry'
     }, {
         id: 14,
-        category: 'Cleaning/Housekeeping',
-        task: ''
-    }, {
-        id: 15,
         category: 'Personal Care',
         task: 'Assist with standing out of bed'
     }, {
-        id: 16,
+        id: 15,
         category: 'Personal Care',
         task: 'Assist with standing out of chair'
     }, {
-        id: 17,
+        id: 16,
         category: 'Personal Care',
         task: 'Assist with traversing stairs'
     }, {
-        id: 18,
+        id: 17,
         category: 'Personal Care',
         task: 'Assist with dressing'
     }, {
-        id: 19,
+        id: 18,
         category: 'Personal Care',
         task: 'Assist with bathing'
     }, {
-        id: 20,
+        id: 19,
         category: 'Personal Care',
         task: 'Assist with toileting'
     }, {
-        id: 21,
+        id: 20,
         category: 'Personal Care',
         task: 'Assist with maintaining nails/feet'
     }, {
-        id: 22,
+        id: 21,
         category: 'Personal Care',
         task: 'Assist with hair combing/styling'
     }, {
-        id: 23,
+        id: 22,
         category: 'Personal Care',
         task: 'Assistance with Medical Device'
     }, {
-        id: 24,
+        id: 23,
         category: 'Personal Care',
         task: 'Medication Reminder'
     }, {
-        id: 25,
+        id: 24,
         category: 'Personal Care',
         task: 'Provided continual supervision due to cognitive impairment'
     }, {
-        id: 26,
+        id: 25,
         category: 'Personal Care',
         task: 'Provided continual supervision due to a physical functional incapacity'
     }, {
-        id: 27,
+        id: 26,
         category: 'Activities',
         task: 'Errands'
     }, {
-        id: 28,
+        id: 27,
         category: 'Activities',
         task: 'Accompany to Medical Appt.'
     }, {
-        id: 29,
+        id: 28,
         category: 'Activities',
         task: 'Accompany to Social Outing'
     }, {
-        id: 30,
+        id: 29,
         category: 'Activities',
         task: 'Walking with Patient (exercise)'
     }, {
-        id: 31,
+        id: 30,
         category: 'Food',
         task: 'Assist with eating (spoon fed or tube fed)'
     }, {
-        id: 32,
+        id: 31,
         category: 'Food',
         task: 'Food Shopping'
     }, {
-        id: 33,
+        id: 32,
         category: 'Food',
         task: 'Monitor/Dispose expired food'
     }, {
-        id: 34,
+        id: 33,
         category: 'Food',
         task: 'Meal Planning'
     }, {
-        id: 35,
+        id: 34,
         category: 'Food',
         task: 'MealPrep (Breakfast)'
     }, {
-        id: 36,
+        id: 35,
         category: 'Food',
         task: 'MealPrep (Lunch)'
     }, {
-        id: 37,
+        id: 36,
         category: 'Food',
         task: 'MealPrep(Dinner)'
     }

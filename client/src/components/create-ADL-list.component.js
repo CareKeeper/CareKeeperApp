@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import dataADL from '../dataADL';
+
+import Attempt3 from './Attempt3.components'
 
 export default class CreateADL extends Component {
   constructor(props) {
@@ -107,31 +110,31 @@ export default class CreateADL extends Component {
                     })
                 }
             </select>
-            </div><br></br><br></br><br></br><br></br>
+            </div><br/><br/><br/>
 
             <div className="form-group"> 
-            <label>List Name: (if new) (this input will only be submitted if dropdown="Create New List"</label>
+            <label>Name for New List: (this input will only be submitted if dropdown="Create New List"</label>
             <input  type="text"
                 required
                 className="form-control"
                 value={this.state.newListName}
                 onChange={this.onChangeNewListName}
                 />
-            </div>
+            </div><br/><br/><br/>
             
             <label>Select from the following: (Attempt 1 w/ responsive columns)</label>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 left-box">
-                        <input type="checkbox" name="activity1" /> Cleaning<br></br>
-                        <input type="checkbox" name="activity2" /> Assist with bathing<br></br>
+                        <input type="checkbox" name="activity1" /> Cleaning<br/>
+                        <input type="checkbox" name="activity2" /> Assist with bathing<br/>
                     </div>
                     <div class="col-md-6 right-box">
-                        <input type="checkbox" name="activity3" /> Food Shopping<br></br>
-                        <input type="checkbox" name="activity4" /> Meal Prep<br></br>
+                        <input type="checkbox" name="activity3" /> Food Shopping<br/>
+                        <input type="checkbox" name="activity4" /> Meal Prep<br/>
                     </div>
                 </div>
-            </div><br></br><br></br>
+            </div><br/><br/>
 
             <label>Select from the following: (Attempt 2 w/ single column table)</label>
             <div class="container">
@@ -190,10 +193,17 @@ export default class CreateADL extends Component {
                 </div>
             </div><br></br>
 
+            <label>Select from the following: (Attempt 3 w/ lists (baby-names))</label>
+            <div class="container">
+                <Attempt3 data={dataADL} />
+            </div><br/><br/>
+
+
             <div className="form-group">
             <input type="submit" value="Save List" className="btn btn-primary" />
             </div>
         </form>
+
       </div>
     </div>
     )
