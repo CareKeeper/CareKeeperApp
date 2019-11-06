@@ -32,8 +32,20 @@ exports.update = function(req, res) {
   var manager = req.manager;
 
   /* Replace the listings's properties with the new properties found in req.body */
-	manager.username = req.body.username;
-	manager.email = req.body.email;
+	if(req.body.username) manager.username = req.body.username;
+  manager.email = req.body.email;
+
+  console.log("Update correctly?: ", req.body.deleteCustom);
+  if(req.body.deleteCustom) {
+    let foundList = manager.customADLs.find((item) => {
+      return item.name === req.body.selectedListName;
+    })
+    let index = manager.customADLs.indexOf(foundList);
+    if (index > -1) {
+      manager.customADLs.splice(index, 1);
+    }
+  }
+  else manager.customADLs.push(req.body.customADLs[0]);
 
 
   /* Save the listing */

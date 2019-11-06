@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import dataADL from '../dataADL';
 
-import Attempt3 from './Attempt3.components'
+import TaskLists from './TaskLists.component'
 
 export default class CreateADL extends Component {
   constructor(props) {
@@ -10,43 +10,44 @@ export default class CreateADL extends Component {
 
     this.onChangeSelectedListName = this.onChangeSelectedListName.bind(this);
     this.onChangeNewListName = this.onChangeNewListName.bind(this);
-    this.onChangeADLSettings = this.onChangeADLSettings.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
         selectedListName: '',
-        selectList: ["Create New List", "DummyList1", "DummyList2"],
+        selectList: [],
         newListName: '',
-        ADLSettings: {
-            activity1: true,
-            activity2: true,
-            activity3: true,
-            activity4: true,
-            activity5: true,
-            activity6: true
-        }
     }
   }
 
-  //This should mount all saved lists to the dropdown menu
-  /*componentDidMount() {
-    axios.get('http://localhost:5000/CareManager/savedLists/')
-      .then(response => {
-        if (response.data.length > 0) {
-          this.setState({
-            selectList: response.data.map(listADL => listADL.????),
-            //username: response.data[0].username ????
-          })
-        }
+  updateCustomLists(callback) {
+    axios.get('http://localhost:5000/api/managers/'+ '5dc34b261b711f82f8296219')
+      .then(res => {
+        this.setState({
+          selectList: res.data.customADLs
+        })
       })
       .catch((error) => {
         console.log(error);
-      })
-  }*/
+      });
+    if(callback) callback();
+  }
+
+  //This should mount all saved lists to the dropdown menu
+  componentDidMount() {
+    this.updateCustomLists();
+  }
+
+  //passes selectedListName to TaskLists in order to reflect current selection (update lists)
+  updateTaskLists() {
+
+  }
 
   onChangeSelectedListName(e) {
     this.setState({
       selectedListName: e.target.value
+    }, () => {
+      console.log("current list: ", this.state.selectedListName);
+      //console.log("ref value: ", this.refs.listInput.value);
     })
   }
 
@@ -57,72 +58,125 @@ export default class CreateADL extends Component {
     console.log(e.target.value)
   }
 
-  onChangeADLSettings(e) {
-      this.setState({
-          ADLSettings: {
-              activity1: e.target.checked
-          }
-      },
-      () => console.log("Activity 1 State: " + this.state.ADLSettings.activity1)
-      )
-  }
-
   onSubmit(e) {
     e.preventDefault();
 
-    const newADL = {
-        newListName: this.state.newListName,
-        ADLSettings: this.state.ADLSettings
+  }
+
+  onSubmit2(newList) {
+    if(this.state.newListName.length > 0) {
+      var newww = {
+        //this will be this.props.manager.username
+        //username: 'ManagerUsername', //<-Current manager username REQUIRED FOR UPDATE
+        customADLs: [{
+          name: this.state.newListName,
+          order: newList
+        }]
+      }
+
+      //Pass current manager here. When logged in, manager id will be this.props.managerID
+      axios.put('http://localhost:5000/api/managers/'+ '5dc34b261b711f82f8296219', newww)
+        .then(res => {
+          console.log(res.data);
+          this.updateCustomLists(() => { //add new list to dropdown
+            this.setState({ //automatically select it
+              selectedListName: this.state.newListName
+            }, () => {
+              this.setState({ //clear new list name area
+                newListName: ''
+              });
+            });
+          });
+        });
+
+      alert("Your custom list has been added!");
     }
+    else alert("Please add a name to your custom list.");
+  }
 
-    console.log(newADL);
+  onDelete() {
+    if(this.state.selectedListName.length > 0) {
+      var newww = {
+        //marker to choose what type of exports.update in managers.server.controller.js
+        deleteCustom: 1,
+        selectedListName: this.state.selectedListName
+      }
 
-    axios.post('http://localhost:5000/careManager/addADL', newADL)
-      .then(res => console.log(res.data));
+      //Pass current manager here. When logged in, manager id will be this.props.managerID
+      axios.put('http://localhost:5000/api/managers/'+ '5dc34b261b711f82f8296219', newww)
+        .then(res => {
+          console.log(res.data);
+          this.updateCustomLists();
+        })
 
-    //backend should then add the new list settings to the dropdown menu
-
-
-    //have that selected automatically
-
+      //alert("Your custom list has been deleted!");
+    }
   }
 
   render() {
     return (
     <div class="card">
       <div class="card-body">
-        <h3>Select ADL List (or create a new one)</h3>
-        <form onSubmit={this.onSubmit}>
+        <h3>Select ADL List</h3>
+        <form onSubmit={this.onSubmit}> {/*Don't need this form in this component */}
 
             <div className="form-group"> 
-            <label>Select list: </label>
-            <select ref="listInput"
-                required
-                className="form-control"
-                value={this.state.selectedListName}
-                onChange={this.onChangeSelectedListName}>
-                {
-                    this.state.selectList.map(function(item) {
-                    return <option 
-                        key={item}
-                        value={item}>{item}
-                        </option>;
-                    })
-                }
-            </select>
-            </div><br/><br/><br/>
+              <label>Select list: </label>
+              <select ref="listInput"
+                  required
+                  className="form-control"
+                  value={this.state.selectedListName}
+                  onChange={this.onChangeSelectedListName} >
+                  {
+                      this.state.selectList.map(function(item) {
+                      return <option key={item._id} value={item.name}>
+                                {item.name}
+                            </option>;
+                      })
+                  }
+              </select>
+            </div>
+            
+            <div className="form-group text-right">
+              <button type="button" className="btn btn-danger" onClick={this.onDelete.bind(this)} >
+                Delete Selected Custom List
+              </button>
+            </div>
+            <br/>
 
             <div className="form-group"> 
-            <label>Name for New List: (this input will only be submitted if dropdown="Create New List"</label>
+            <label>Name for New List: (Must be filled in to create list)</label>
             <input  type="text"
                 required
                 className="form-control"
                 value={this.state.newListName}
                 onChange={this.onChangeNewListName}
                 />
-            </div><br/><br/><br/>
-            
-            <label>Select from the following: (Attempt 1 w/ responsive columns)</label>
+            </div><br/>
+
+            <label>Select from the following: </label>
+            <div class="container">
+                <TaskLists data={dataADL} onSubmit2={this.onSubmit2.bind(this)} selectedListName={this.state.selectedListName} />
+            </div><br/><br/>
+
+
+            <div className="form-group">
+                <input type="submit" value="Useless Button" className="btn btn-primary" />
+            </div>
+        </form>
+
+      </div>
+    </div>
+    )
+  }
+}
+
+
+
+
+//Attempt 1 Code
+
+/*<label>Select from the following: (Attempt 1 w/ responsive columns)</label>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 left-box">
@@ -135,8 +189,12 @@ export default class CreateADL extends Component {
                     </div>
                 </div>
             </div><br/><br/>
+ */
 
-            <label>Select from the following: (Attempt 2 w/ single column table)</label>
+ 
+ //Attemp 2 Code
+
+ /*<label>Select from the following: (Attempt 2 w/ single column table)</label>
             <div class="container">
                 <div className="tableWrapper">
                     <table className="table table-striped w-auto">
@@ -192,20 +250,4 @@ export default class CreateADL extends Component {
                     </table>
                 </div>
             </div><br></br>
-
-            <label>Select from the following: (Attempt 3 w/ lists (baby-names))</label>
-            <div class="container">
-                <Attempt3 data={dataADL} />
-            </div><br/><br/>
-
-
-            <div className="form-group">
-            <input type="submit" value="Save List" className="btn btn-primary" />
-            </div>
-        </form>
-
-      </div>
-    </div>
-    )
-  }
-}
+ */

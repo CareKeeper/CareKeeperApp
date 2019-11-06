@@ -16,6 +16,7 @@ class PatientTest extends React.Component {
 			{
 				currentManager: _id
 			});
+		console.log(_id);
 	}
 
 	render() {

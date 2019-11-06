@@ -148,7 +148,7 @@ export default [
     }, {
         id: 36,
         category: 'Food',
-        task: 'MealPrep(Dinner)'
+        task: 'MealPrep (Dinner)'
     }
 
 ]
