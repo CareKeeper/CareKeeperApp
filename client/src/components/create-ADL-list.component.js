@@ -20,7 +20,7 @@ export default class CreateADL extends Component {
   }
 
   updateCustomLists(callback) {
-    axios.get('http://localhost:5000/api/managers/'+ '5dc34b261b711f82f8296219')
+    axios.get('http://localhost:5000/api/managers/'+ '5dc39f6d42502de904802c8c')
       .then(res => {
         this.setState({
           selectList: res.data.customADLs
@@ -75,7 +75,7 @@ export default class CreateADL extends Component {
       }
 
       //Pass current manager here. When logged in, manager id will be this.props.managerID
-      axios.put('http://localhost:5000/api/managers/'+ '5dc34b261b711f82f8296219', newww)
+      axios.put('http://localhost:5000/api/managers/'+ '5dc39f6d42502de904802c8c', newww)
         .then(res => {
           console.log(res.data);
           this.updateCustomLists(() => { //add new list to dropdown
@@ -103,7 +103,7 @@ export default class CreateADL extends Component {
       }
 
       //Pass current manager here. When logged in, manager id will be this.props.managerID
-      axios.put('http://localhost:5000/api/managers/'+ '5dc34b261b711f82f8296219', newww)
+      axios.put('http://localhost:5000/api/managers/'+ '5dc39f6d42502de904802c8c', newww)
         .then(res => {
           console.log(res.data);
           this.updateCustomLists();
