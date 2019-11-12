@@ -44,7 +44,7 @@ class Demo1Home extends React.Component {
                             <ManagerSelect changeCurrentManager={this.changeCurrentManager.bind(this)}/><br/>
                             <div className="text-center">
                                 <Link to={{
-                                    pathname: "/UpdateThis", //ADD MILENAS COMPONENT
+                                    pathname: "/Caremanager",
                                     state: {
                                         userID: this.state.currentManager
                                     }
