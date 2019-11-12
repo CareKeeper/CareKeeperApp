@@ -8,49 +8,56 @@ import NewCalendar from '../views/NewCalendar';
 import '../stylesheets/Caremanager.css';
 
 
-function Caremanager(){
-    return (
+class Caremanager extends React.Component {
+    constructor(props) {
+        super(props);
 
-        <div className = "App">
+    }
 
-            <header className = "App-header">
-            <br/>
-                <div class="row text-center">
+    render() {
+        console.log(this.props.location.state.userID);
+        return (
 
-                    <div class="col-lg-3">
-                    <Dropdown/>
-                    </div>
-                    <div class="col-lg-3">
-                    <Invite/>
-                    </div>
-                    <div class="col-lg-3">
-                    <Notes/>
-                    </div>
-                    <div class="col-lg-3">
-                    <ScheduleVisits/>
-                    </div>
+            <div className="App">
 
-                </div>
+                <header className="App-header">
+                    <br/>
+                    <div class="row text-center">
 
-
-                <div className="container-fluid">
-                    <div className = "page-wrapper">
-                        <div className = "component-wrapper LHS-wrapper">
-                       
-                        <DoubleButton/>
-                        <br/>
-                        <NewCalendar/>
+                        <div class="col-lg-3">
+                            <Dropdown/>
                         </div>
-                        <div className="component-wrapper RHS-wrapper">
+                        <div class="col-lg-3">
+                            <Invite/>
                         </div>
+                        <div class="col-lg-3">
+                            <Notes/>
                         </div>
-                        
-                    </div>
-                    </header>
-                </div>
-                
-                        
+                        <div class="col-lg-3">
+                            <ScheduleVisits/>
+                        </div>
 
-    )
+                    </div>
+
+
+                    <div className="container-fluid">
+                        <div className="page-wrapper">
+                            <div className="component-wrapper LHS-wrapper">
+
+                                <DoubleButton/>
+                                <br/>
+                                <NewCalendar/>
+                            </div>
+                            <div className="component-wrapper RHS-wrapper">
+                            </div>
+                        </div>
+
+                    </div>
+                </header>
+            </div>
+
+
+        )
+    };
 }
 export default Caremanager;
