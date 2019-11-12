@@ -20,7 +20,7 @@ export default class DoubleButton extends React.Component {
             <div>
 
       <button onClick={e => this.handleItemClick(e, 'sign-in')} 
-      type="button" class="btn btn-secondary">sign-in</button>
+      type="button" className="btn btn-secondary">sign-in</button>
     
               </div>
           );

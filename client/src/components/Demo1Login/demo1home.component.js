@@ -39,7 +39,7 @@ class Demo1Home extends React.Component {
 				<div>
                     <div className="row">
                         <div className="col">
-                            <h3 class="text-center">Login as Care Manager</h3>
+                            <h3 className="text-center">Login as Care Manager</h3>
                             <ManagerAdd />
                             <ManagerSelect changeCurrentManager={this.changeCurrentManager.bind(this)}/><br/>
                             <div className="text-center">
@@ -49,12 +49,12 @@ class Demo1Home extends React.Component {
                                         userID: this.state.currentManager
                                     }
                                 }}>
-                                    <button type="button" class="btn btn-primary btn-lg">Log In</button>
+                                    <button type="button" className="btn btn-primary btn-lg">Log In</button>
                                 </Link>
                             </div>
                         </div>
                         <div className="col">
-                            <h3 class="text-center">Login as Care Giver</h3>
+                            <h3 className="text-center">Login as Care Giver</h3>
                             <CareGiverAdd />
                             <CareGiverSelect changeCurrentCareGiver={this.changeCurrentCareGiver.bind(this)}/><br/>
                             <div className="text-center">
@@ -64,7 +64,7 @@ class Demo1Home extends React.Component {
                                         userID: this.state.currentCareGiver
                                     }
                                 }}>
-                                    <button type="button" class="btn btn-primary btn-lg">Log In</button>
+                                    <button type="button" className="btn btn-primary btn-lg">Log In</button>
                                 </Link>
                             </div>
                         </div>

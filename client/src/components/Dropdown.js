@@ -26,14 +26,14 @@ handleClick(event) {
     return (
     
 
-      <div class="dropdown ">
-      <button class="btn btn-secondary  dropdown-toggle >" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div className="dropdown ">
+      <button className="btn btn-secondary  dropdown-toggle >" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         See Patients
       </button>
     
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Patient 1</a>
-        <a class="dropdown-item" href="#">Patient 2</a>
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a className="dropdown-item" href="#">Patient 1</a>
+        <a className="dropdown-item" href="#">Patient 2</a>
       </div>
       </div>
 

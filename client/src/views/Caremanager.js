@@ -22,18 +22,18 @@ class Caremanager extends React.Component {
 
                 <header className="App-header">
                     <br/>
-                    <div class="row text-center">
+                    <div className="row text-center">
 
-                        <div class="col-lg-3">
+                        <div className="col-lg-3">
                             <Dropdown/>
                         </div>
-                        <div class="col-lg-3">
+                        <div className="col-lg-3">
                             <Invite/>
                         </div>
-                        <div class="col-lg-3">
+                        <div className="col-lg-3">
                             <Notes/>
                         </div>
-                        <div class="col-lg-3">
+                        <div className="col-lg-3">
                             <ScheduleVisits/>
                         </div>
 
