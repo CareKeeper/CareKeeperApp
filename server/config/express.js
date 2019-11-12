@@ -3,10 +3,15 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+    patientsRouter = require('../routes/patients.server.routes'),
+    managersRouter = require('../routes/managers.server.routes'),
+    caregiversRouter = require('../routes/caregivers.server.routes'),
+    visitsRouter = require('../routes/visits.server.routes'),
+		cors = require('cors');
+
 
 module.exports.init = () => {
-    /* 
+    /*
         connect to database
         - reference README for db uri
     */
@@ -22,11 +27,16 @@ module.exports.init = () => {
     // enable request logging for development debugging
     app.use(morgan('dev'));
 
+		app.use(cors());
+
     // body parsing middleware
     app.use(bodyParser.json());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/api/patients', patientsRouter);
+    app.use('/api/managers', managersRouter);
+    app.use('/api/caregivers', caregiversRouter);
+    app.use('/api/visits', visitsRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
@@ -40,4 +50,3 @@ module.exports.init = () => {
 
     return app
 }
-
