@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
+import '../stylesheets/Header.css';  
 
-const Header = () => {
+export default class Navbar extends Component {
+
+  render() {
     return (
-        <div>
-        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
         <Link to="/" className="navbar-brand">CareKeeper</Link>
         <div className="collpase navbar-collapse">
         <ul className="navbar-nav mr-auto">
@@ -13,8 +14,6 @@ const Header = () => {
         </ul>
         </div>
       </nav>
-      </div>
-    )
+    );
+  }
 }
-
-export default Header;
