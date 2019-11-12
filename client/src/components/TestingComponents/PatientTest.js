@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import PatientAdd from './PatientAdd';
-import ManagerAdd from './ManagerAdd';
-import ManagerSelect from './ManagerSelect';
+import ManagerAdd from '../Demo1Login/ManagerAdd';
+import ManagerSelect from '../Demo1Login/ManagerSelect';
 import PatientShowAll from './PatientShowAll';
 import ManagerShowPatients from './ManagerShowPatients';
 

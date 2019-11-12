@@ -21,11 +21,11 @@ class ManagerAdd extends React.Component {
 			<div class="card-body">
 				<div class="form-group">
 					<label>Username</label>
-					<input class="form-control" ref="usernameText" placeholder="ABC" />
-					<label>email</label>
-					<input class="form-control" ref="emailText" placeholder="ABC" />
+					<input class="form-control" ref="usernameText" placeholder="Insert username here..." />
+					<label>Email</label>
+					<input class="form-control" ref="emailText" placeholder="Insert email here..." />
 				</div>
-				<button type="button" class="btn btn-primary" onClick={this.addManager.bind(this)}>Add</button>
+				<button type="button" class="btn btn-secondary" onClick={this.addManager.bind(this)}>Add</button>
 			</div></div>
 		);
 	}
