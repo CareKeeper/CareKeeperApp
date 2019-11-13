@@ -16,6 +16,7 @@ class CareGiverSelect extends React.Component {
 				this.setState({
 					careGivers: res.data
 				});
+				this.changeCurrentCareGiver();
 			});
 	}
 

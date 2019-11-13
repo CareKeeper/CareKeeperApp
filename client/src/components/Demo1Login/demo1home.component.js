@@ -27,7 +27,7 @@ class Demo1Home extends React.Component {
     changeCurrentCareGiver(_id) {
         this.setState(
             {
-                cuurrentCareGiver: _id
+                currentCareGiver: _id
             }
         );
         console.log("Current Care Giver ID: ", _id);

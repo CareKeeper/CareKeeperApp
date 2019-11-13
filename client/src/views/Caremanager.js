@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from '../components/Dropdown';
+import PatientSelect from '../components/patientSelect.component';
 import Invite from '../views/Invite'
 import Notes from "./Notes"
 import ScheduleVisits from '../views/ScheduleVisits';
@@ -12,6 +12,18 @@ class Caremanager extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            currentPatient: ""
+        }
+
+    }
+
+    changeCurrentPatient(_id) {
+        this.setState(
+            {
+                currentPatient: _id
+            });
+        console.log(_id);
     }
 
     render() {
@@ -25,7 +37,7 @@ class Caremanager extends React.Component {
                     <div className="row text-center">
 
                         <div className="col-lg-3">
-                            <Dropdown/>
+                            <PatientSelect currentManager = {this.props.location.state.userID} changeCurrentPatient={this.changeCurrentPatient.bind(this)}/>
                         </div>
                         <div className="col-lg-3">
                             <Invite/>
