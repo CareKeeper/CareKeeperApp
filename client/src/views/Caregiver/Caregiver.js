@@ -6,6 +6,7 @@ import WorkSched from './WorkSchedule.js'
 import CaregiverCheckboxArea from './CaregiverCheckboxArea.js';
 import Calendar from '../../components/AppCalendar.js';
 import '../../stylesheets/Caregiver.css';
+import data from '../../dataADL';
 
 class Caregiver extends React.Component {
   constructor(props) {
@@ -22,10 +23,15 @@ class Caregiver extends React.Component {
       ]
     };
 
+
+
+
   }
 
 
   render() {
+
+    console.log("Current caregiver ID:", this.props.location.state.userID);
 
     return (
       <div className="App">
@@ -41,7 +47,7 @@ class Caregiver extends React.Component {
               </div>
               <div className="component-wrapper RHS-wrapper">
                 < CaregiverCheckboxArea
-                  data={this.props.data}
+                  data={data}
                   taskArray={this.state.taskArray} />
               </div>
             </div>

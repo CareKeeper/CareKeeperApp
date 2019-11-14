@@ -65,7 +65,7 @@ class Demo1Home extends React.Component {
                             </div>
                             <div className="text-center">
                                 <Link to={{
-                                    pathname: "/UpdateThis", //ADD LESLEYS COMPONENT
+                                    pathname: "/Caregiver", //ADD LESLEYS COMPONENT
                                     state: {
                                         userID: this.state.currentCareGiver
                                     }

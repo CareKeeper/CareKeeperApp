@@ -19,7 +19,6 @@ import CreateADL from "./components/CreateADL/create-ADL-list.component"
 import Header from "./components/Header/Header"
 import CaregiverPage from "./views/Caregiver/Caregiver"
 import "bootstrap/dist/css/bootstrap.min.css"
-import data from './dataADL';
 
 
 
@@ -36,7 +35,7 @@ const App = () => {
           </Route>
           <Route exact path="/Demo1Home" component={Demo1Home} />
           <Route exact path="/CareManager" component={Caremanager} /> {/* MILENA'S PAGE, insert component={*your component*} */}
-          <Route exact path="/Caregiver"><CaregiverPage data={data} /></Route> {/* LESLEY'S PAGE, insert component={*your component*} */}
+          <Route exact path="/Caregiver" component={CaregiverPage} />{/* LESLEY'S PAGE, insert component={*your component*} */}
 
 
           <Route exact path="/PatientTestPage" component={PatientTest} />
