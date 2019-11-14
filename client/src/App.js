@@ -26,10 +26,11 @@ const App = () => {
 	// Can use this switch statement to have a "single page app" that shows different things based on the url
   return (
     <Router>
-      <div className="container">
+      
         <Logo />
         <Navbar />
-        <br/> {/*For testing purposes only*/}
+        <br/>
+        <div className="container"> {/*For testing purposes only*/}
         <Switch>
           <Route exact path="/">
             <Redirect to="/Demo1Home"></Redirect>
