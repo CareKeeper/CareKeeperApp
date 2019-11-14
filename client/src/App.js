@@ -16,7 +16,7 @@ import CreatePatient from "./views/CareManager/create-patient.component"
 import EditPatient from "./views/CareManager/edit-patient.component"
 import CreateADL from "./components/CreateADL/create-ADL-list.component"
 
-import Header from "./components/Header/Header"
+//import Header from "./components/Header/Header"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 

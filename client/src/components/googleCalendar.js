@@ -1,4 +1,5 @@
-import React, {ReactNode, SyntheticEvent} from 'react';
+//import React, {ReactNode, SyntheticEvent} from 'react';
+import React from 'react';
 import ApiCalendar from 'react-google-calendar-api';
   
 export default class DoubleButton extends React.Component {

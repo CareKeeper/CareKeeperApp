@@ -29,13 +29,13 @@ class CareGiverSelect extends React.Component {
 		//You will need the onChange value for the input tag to capture the textbox value
 
 		return (
-			<div class="card">
+			<div className="card">
 				<h6 className="card-header">Select Caregiver</h6>
                 <div className="card-body">
-					<select class="form-control" ref="careGiverSelect"
+					<select className="form-control" ref="careGiverSelect"
 						onChange={this.changeCurrentCareGiver.bind(this)} >
 						{this.state.careGivers.map(cg =>
-							<option value={cg._id}>{cg.username}</option>)}
+							<option key={cg._id} value={cg._id}>{cg.username}</option>)}
 					</select>
 				</div>
 			</div>

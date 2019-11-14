@@ -1,5 +1,5 @@
 import React from 'react';
-import PatientDropdown from '../../components/PatientDropdown.js';
+import PatientDropdown from './PatientDropdown.js';
 import CaregiverLogArea from './CaregiverLogArea.js';
 import RecentLogs from './RecentLogs.js'
 import WorkSched from './WorkSchedule.js'

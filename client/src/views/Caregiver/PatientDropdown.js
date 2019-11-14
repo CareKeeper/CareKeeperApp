@@ -30,19 +30,17 @@ class PatientDropdown extends React.Component {
             aria-expanded="false">
             Patient Dropdown
           </button>
-            <div className="dropdown-menu" aria labelledby="dropdownMenuButton">
-              <a
+            <div className="dropdown-menu" labelledby="dropdownMenuButton">
+              <span
                 className="dropdown-item"
-                href="#"
                 name="Patient 1">
                 Patient 1
-              </a>
-              <a
+              </span>
+              <span
                 className="dropdown-item"
-                href="#"
                 name="Patient 2">
                 Patient 2
-              </a>
+              </span>
             </div>
           </div>
       </div>

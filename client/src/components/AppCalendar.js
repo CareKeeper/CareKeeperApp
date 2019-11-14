@@ -9,7 +9,7 @@ class AppCalendar extends Component {
   onChange = date => this.setState({ date })
 
   render() {
-    const { value } = this.state;
+    //const { value } = this.state;
     return (
       <div>
         <Calendar

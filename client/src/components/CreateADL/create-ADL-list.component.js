@@ -124,8 +124,8 @@ export default class CreateADL extends Component {
 
   render() {
     return (
-    <div class="card">
-      <div class="card-body">
+    <div className="card">
+      <div className="card-body">
       <div className="form-group text-center">
           <Link to={{
                       pathname: "/Caremanager",
@@ -172,7 +172,7 @@ export default class CreateADL extends Component {
           </div><br/>
 
           <label>Select from the following: </label>
-          <div class="container">
+          <div className="container">
               <TaskLists 
                   currentManager={this.state.careManagerID}
                   data={dataADL} 
