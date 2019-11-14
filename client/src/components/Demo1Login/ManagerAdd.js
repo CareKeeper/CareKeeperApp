@@ -8,7 +8,10 @@ class ManagerAdd extends React.Component {
 							medications: []};
 
 		axios.post('http://localhost:5000/api/managers/', manager)
-  .then(res => console.log(res.data));
+  			.then(res => console.log(res.data));
+		
+		alert('You are now registered. Please select your name.');
+		window.location = './';
 	}
 
 	render() {

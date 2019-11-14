@@ -8,7 +8,10 @@ class CareGiverAdd extends React.Component {
 						    };
 
 		axios.post('http://localhost:5000/api/caregivers/', careGiver)
-  .then(res => console.log(res.data));
+			  .then(res => console.log(res.data));
+			  
+		alert('You are now registered. Please select your name.');
+		window.location = './';
 	}
 
 	render() {
