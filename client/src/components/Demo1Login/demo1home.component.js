@@ -56,7 +56,13 @@ class Demo1Home extends React.Component {
                         <div className="col">
                             <h3 className="text-center">Login as Care Giver</h3>
                             <CareGiverAdd />
-                            <CareGiverSelect changeCurrentCareGiver={this.changeCurrentCareGiver.bind(this)}/><br/>
+
+                            <div className="card">
+                                <h4 className="card-header">Care Giver Select</h4>
+                                <div className="card-body">
+                                 <CareGiverSelect changeCurrentCareGiver={this.changeCurrentCareGiver.bind(this)}/><br/>
+                                </div>
+                            </div>
                             <div className="text-center">
                                 <Link to={{
                                     pathname: "/UpdateThis", //ADD LESLEYS COMPONENT
