@@ -14,6 +14,7 @@ class PatientDropdown extends React.Component {
       name: event.target.name
     });
     alert(this.state.name);
+    
   }
 
   render() {
@@ -31,14 +32,12 @@ class PatientDropdown extends React.Component {
           </button>
             <div className="dropdown-menu" aria labelledby="dropdownMenuButton">
               <a
-                onClick={this.handleClick}
                 className="dropdown-item"
                 href="#"
                 name="Patient 1">
                 Patient 1
               </a>
               <a
-                onClick={this.handleClick}
                 className="dropdown-item"
                 href="#"
                 name="Patient 2">

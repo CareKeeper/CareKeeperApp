@@ -34,8 +34,9 @@ exports.update = function(req, res) {
 
   /* Replace the listings's properties with the new properties found in req.body */
 	patient.nickname = req.body.nickname;
-	patient.careManager = req.body.careManager;
-	patient.medications = req.body.medications;
+	//patient.careManager = req.body.careManager;
+	//patient.medications = req.body.medications;
+	patient.notes = req.body.notes;
 
 
   /* Save the listing */

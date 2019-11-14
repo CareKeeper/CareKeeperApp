@@ -30,8 +30,8 @@ class Caregiver extends React.Component {
 
 
   render() {
-
-    console.log("Current caregiver ID:", this.props.location.state.userID);
+    //This will cause the app to crash on clicking any of the buttons
+    //console.log("Current caregiver ID:", this.props.location.state.userID);
 
     return (
       <div className="App">

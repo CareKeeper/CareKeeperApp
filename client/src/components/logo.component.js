@@ -5,7 +5,8 @@ export default class Logo extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+      <nav className="navbar navbar-dark navbar-expand-lg"
+            style={{"background-color": "#FF7F50"}}>
         <Link to="/" className="navbar-brand">CareKeeper</Link>
         <div className="collpase navbar-collapse">
         <ul className="navbar-nav mr-auto">
