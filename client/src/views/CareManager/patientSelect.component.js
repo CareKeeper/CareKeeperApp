@@ -18,6 +18,7 @@ class PatientSelect extends React.Component {
                     patients: res.data
                 });
             });
+        console.log("Infinite loop?");
     }
 
     updatePatientList2() {
@@ -37,8 +38,10 @@ class PatientSelect extends React.Component {
         this.updatePatientList2();
     }
 
-    componentDidUpdate() {
-        this.updatePatientList();
+    componentDidUpdate(prevProps) {
+        if(this.props.currentManager !== prevProps.currentManager) {
+            this.updatePatientList();
+        }
     }
 
     render() {
