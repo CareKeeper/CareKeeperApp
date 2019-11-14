@@ -35,7 +35,6 @@ class Demo1Home extends React.Component {
 				<div>
                     <div className="row">
                         <div className="col">
-                            <h3 className="text-center">Login as Care Manager</h3>
                             <ManagerAdd />
                             <ManagerSelect changeCurrentManager={this.changeCurrentManager.bind(this)}/><br/>
                             <div className="text-center">
@@ -50,15 +49,8 @@ class Demo1Home extends React.Component {
                             </div>
                         </div>
                         <div className="col">
-                            <h3 className="text-center">Login as Care Giver</h3>
                             <CareGiverAdd />
-
-                            <div className="card">
-                                <h4 className="card-header">Care Giver Select</h4>
-                                <div className="card-body">
-                                 <CareGiverSelect changeCurrentCareGiver={this.changeCurrentCareGiver.bind(this)}/><br/>
-                                </div>
-                            </div>
+                            <CareGiverSelect changeCurrentCareGiver={this.changeCurrentCareGiver.bind(this)}/><br/>
                             <div className="text-center">
                                 <Link to={{
                                     pathname: "/Caregiver",

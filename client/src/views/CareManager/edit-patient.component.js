@@ -21,18 +21,6 @@ export default class EditPatient extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    console.log("current patient: ", this.props.currentPatient);
-    axios.get('http://localhost:5000/api/patients/' + this.props.currentPatient)
-        .then(res =>  {
-          this.setState({
-            nickname: res.data.nickname,
-            notes: res.data.notes
-            //medications
-          });
-        })
-  }
-
   componentDidUpdate(prevProps) {
     if(this.props.currentPatient !== prevProps.currentPatient) {
       axios.get('http://localhost:5000/api/patients/' + this.props.currentPatient)
