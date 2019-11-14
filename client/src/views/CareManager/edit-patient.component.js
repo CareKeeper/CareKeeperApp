@@ -65,12 +65,12 @@ export default class EditPatient extends Component {
       nickname: this.state.nickname,
       notes: this.state.notes,
       //medications: this.state.medications,
-      careManager: this.props.currentManager,
+      //careManager: this.props.currentManager,
     }
 
     console.log(patient);
 
-    axios.post('http://localhost:5000/api/patients', patient)
+    axios.put('http://localhost:5000/api/patients/' + this.props.currentPatient, patient)
       .then(res => console.log(res.data));
 
     //window.location = '/';
