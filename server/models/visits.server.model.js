@@ -20,7 +20,8 @@ var visitSchema = new Schema({
     caregiver: {type: Schema.Types.ObjectId, required: true},
     ADLlist: {type: customADLsSchema, required: true},
     ADLresults: {type: ADLresultsSchema},
-    Notes: String,
+    managerNotes: String,
+    caregiverNotes: String,
     created_at: Date,
     updated_at: Date
 });

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import CareGiverSelect from '../components/Demo1Login/CareGiverSelect';
 
 
 export default class ScheduleVisits extends React.Component {
@@ -30,6 +31,15 @@ export default class ScheduleVisits extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
        }
+
+    changeCurrentCareGiver(_id) {
+        this.setState(
+            {
+                currentCareGiver: _id
+            }
+        );
+        console.log("Current Care Giver ID: ", _id);
+    }
   
   
     render() {
@@ -43,8 +53,8 @@ export default class ScheduleVisits extends React.Component {
             <ModalBody>
             <div className="row">
               <div className="form-group col-md-4">
-              <label>Name:</label>
-              <input type="text" value={this.state.name} onChange={this.handleChangeName} className="form-control" />
+              <label>Caregiver:</label>
+              <CareGiverSelect changeCurrentCareGiver={this.changeCurrentCareGiver.bind(this)}/>
                 </div>
                 </div>
              
