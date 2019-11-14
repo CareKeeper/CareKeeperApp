@@ -10,15 +10,6 @@ export default class Navbar extends Component {
         <div className="collpase navbar-collapse">
         <ul className="navbar-nav mr-auto">
           <li className="navbar-item">
-          <Link to="/PatientTestPage" className="nav-link">Scott's PatientTestPage</Link>
-          </li>
-          <li className="navbar-item">
-          <Link to="/create_patient" className="nav-link">Create Patient</Link>
-          </li>
-          <li className="navbar-item">
-          <Link to="/edit_patient" className="nav-link">Edit Patient</Link>
-          </li>
-          <li className="navbar-item">
           <Link to="/create_ADL" className="nav-link">Create Custom ADL</Link>
           </li>
           <li className="navbar-item nav-link" style={{color: 'red'}}>

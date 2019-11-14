@@ -1,14 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import ManagerAdd from './ManagerAdd';
 import ManagerSelect from './ManagerSelect';
 import CareGiverAdd from './CareGiverAdd';
 import CareGiverSelect from './CareGiverSelect';
-
-import PatientAdd from '../TestingComponents/PatientAdd';
-import ManagerShowPatients from '../TestingComponents/ManagerShowPatients';
 
 class Demo1Home extends React.Component {
 	state = {
@@ -65,7 +61,7 @@ class Demo1Home extends React.Component {
                             </div>
                             <div className="text-center">
                                 <Link to={{
-                                    pathname: "/Caregiver", //ADD LESLEYS COMPONENT
+                                    pathname: "/Caregiver",
                                     state: {
                                         userID: this.state.currentCareGiver
                                     }
