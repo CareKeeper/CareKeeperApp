@@ -9,7 +9,7 @@ class CaregiverLogArea extends React.Component {
             <form>
               <div className="row">
                 <div className="col">
-                  <label for="checkin_form">Check in:</label>
+                  <label htmlFor="checkin_form">Check in:</label>
                 </div>
                 <div className="col">
                   <input type="text" className="form-control"id="checkin_hr" placeholder="Hour"></input>
@@ -28,7 +28,7 @@ class CaregiverLogArea extends React.Component {
             <form>
               <div className="row">
                 <div className="col">
-                  <label for="checkin_form">Check in:</label>
+                  <label htmlFor="checkin_form">Check in:</label>
                 </div>
                 <div className="col">
                   <input type="text" className="form-control"id="checkin_hr" placeholder="Hour"></input>

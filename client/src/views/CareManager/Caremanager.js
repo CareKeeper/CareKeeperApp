@@ -8,7 +8,7 @@ import ScheduleVisits from './ScheduleVisits';
 import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import '../../stylesheets/Caremanager.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 

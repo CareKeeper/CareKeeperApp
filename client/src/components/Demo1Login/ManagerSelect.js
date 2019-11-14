@@ -31,13 +31,13 @@ class ManagerSelect extends React.Component {
 		//You will need the onChange value for the input tag to capture the textbox value
 
 		return (
-			<div class="card">
-			<h6 class="card-header">Select Manager</h6>
-				<div class="card-body">
-					<select class="form-control" ref="managerSelect"
+			<div className="card">
+				<h6 className="card-header">Select Manager</h6>
+				<div className="card-body">
+					<select className="form-control" ref="managerSelect"
 						onChange={this.changeCurrentManager.bind(this)} >
 						{this.state.managers.map(m =>
-							<option value={m._id}>{m.username}</option>)}
+							<option key={m._id} value={m._id}>{m.username}</option>)}
 					</select>
 				</div>
 			</div>

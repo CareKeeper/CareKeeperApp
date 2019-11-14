@@ -49,10 +49,10 @@ class PatientSelect extends React.Component {
         return (
                 <div >
                     <h6>Select Patient</h6>
-                    <select class="form-control" ref="patientSelect"
+                    <select className="form-control" ref="patientSelect"
                             onChange={this.changeCurrentPatient.bind(this)} >
                         {this.state.patients.map(m =>
-                            <option value={m._id}>{m.nickname}</option>)}
+                            <option key={m._id} value={m._id}>{m.nickname}</option>)}
                     </select>
                 </div>
         );

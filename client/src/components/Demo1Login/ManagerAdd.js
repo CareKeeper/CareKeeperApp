@@ -16,17 +16,18 @@ class ManagerAdd extends React.Component {
 		//You will need the onChange value for the input tag to capture the textbox value
 
 		return (
-			<div class="card">
-			<h6 class="card-header">Add Manager</h6>
-			<div class="card-body">
-				<div class="form-group">
-					<label>Username</label>
-					<input class="form-control" ref="usernameText" placeholder="username" />
-					<label>Email</label>
-					<input class="form-control" ref="emailText" placeholder="email" />
+			<div className="card">
+				<h6 className="card-header">Add Manager</h6>
+				<div className="card-body">
+					<div className="form-group">
+						<label>Username</label>
+						<input className="form-control" ref="usernameText" placeholder="username" />
+						<label>Email</label>
+						<input className="form-control" ref="emailText" placeholder="email" />
+					</div>
+					<button type="button" className="btn btn-secondary" onClick={this.addManager.bind(this)}>Add</button>
 				</div>
-				<button type="button" class="btn btn-secondary" onClick={this.addManager.bind(this)}>Add</button>
-			</div></div>
+			</div>
 		);
 	}
 }
