@@ -20,7 +20,24 @@ class PatientSelect extends React.Component {
             });
     }
 
+    updatePatientList2() {
+        let url = 'http://localhost:5000/api/patients/byManager/' + this.props.currentManager;
+        axios.get(url)
+            .then(res => {
+                this.setState({
+                    patients: res.data
+                }, this.changeCurrentPatient);
+            });
+    }
+
+    //Made copy to prevent infinite loop on callback
+    //Meant to update the edit patient data upon loading the page
+    //instead of only when a different patient is selected
     componentDidMount() {
+        this.updatePatientList2();
+    }
+
+    componentDidUpdate() {
         this.updatePatientList();
     }
 

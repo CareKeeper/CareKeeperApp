@@ -7,7 +7,6 @@ class ManagerSelect extends React.Component {
 	}
 
 	changeCurrentManager() {
-		console.log(this.refs.managerSelect.value);
 		this.props.changeCurrentManager(this.refs.managerSelect.value);
 	};
 

@@ -7,17 +7,17 @@ import NotFound from "./views/NotFound"
 
 import Logo from "./components/logo.component"
 import Demo1Home from "./components/Demo1Login/demo1home.component"
-import Caremanager from './views/Caremanager';
+import Caremanager from './views/CareManager/Caremanager';
+import CaregiverPage from "./views/Caregiver/Caregiver"
 
 import Navbar from "./components/TestingComponents/navbar.component"
 import PatientTest from "./components/TestingComponents/PatientTest"
-import CreatePatient from "./components/TestingComponents/create-patient.component"
-import EditPatient from "./components/TestingComponents/edit-patient.component"
+import CreatePatient from "./views/CareManager/create-patient.component"
+import EditPatient from "./views/CareManager/edit-patient.component"
 import CreateADL from "./components/CreateADL/create-ADL-list.component"
 
-
 import Header from "./components/Header/Header"
-import CaregiverPage from "./views/Caregiver/Caregiver"
+
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
@@ -34,8 +34,8 @@ const App = () => {
             <Redirect to="/Demo1Home"></Redirect>
           </Route>
           <Route exact path="/Demo1Home" component={Demo1Home} />
-          <Route exact path="/CareManager" component={Caremanager} /> {/* MILENA'S PAGE, insert component={*your component*} */}
-          <Route exact path="/Caregiver" component={CaregiverPage} />{/* LESLEY'S PAGE, insert component={*your component*} */}
+          <Route exact path="/CareManager" component={Caremanager} />
+          <Route exact path="/Caregiver" component={CaregiverPage} />
 
 
           <Route exact path="/PatientTestPage" component={PatientTest} />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import CareGiverSelect from '../components/Demo1Login/CareGiverSelect';
+import CareGiverSelect from '../../components/Demo1Login/CareGiverSelect';
 
 
 export default class ScheduleVisits extends React.Component {

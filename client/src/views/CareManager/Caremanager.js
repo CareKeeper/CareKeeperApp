@@ -1,11 +1,13 @@
 import React from 'react';
-import PatientSelect from '../components/patientSelect.component';
-import Invite from '../views/Invite'
+import PatientSelect from './patientSelect.component';
+import CreatePatient from './create-patient.component'
+import EditPatient from './edit-patient.component'
+import Invite from './Invite'
 import Notes from "./Notes"
-import ScheduleVisits from '../views/ScheduleVisits';
-import DoubleButton from '../components/googleCalendar';
-import NewCalendar from '../views/NewCalendar';
-import '../stylesheets/Caremanager.css';
+import ScheduleVisits from './ScheduleVisits';
+import DoubleButton from '../../components/googleCalendar';
+import NewCalendar from './NewCalendar';
+import '../../stylesheets/Caremanager.css';
 
 
 class Caremanager extends React.Component {
@@ -23,11 +25,10 @@ class Caremanager extends React.Component {
             {
                 currentPatient: _id
             });
-        console.log(_id);
     }
 
     render() {
-        console.log(this.props.location.state.userID);
+        console.log("Current manager ID: ", this.props.location.state.userID);
         return (
 
             <div className="App">
@@ -39,13 +40,19 @@ class Caremanager extends React.Component {
                         <div className="col-lg-3">
                             <PatientSelect currentManager = {this.props.location.state.userID} changeCurrentPatient={this.changeCurrentPatient.bind(this)}/>
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-3 align-self-end">
+                            <CreatePatient currentManager = {this.props.location.state.userID} />
+                        </div>
+                        <div className="col-lg-3 align-self-end">
+                            <EditPatient currentPatient = {this.state.currentPatient} />
+                        </div>
+                        <div className="col-lg-3 align-self-end">
                             <Invite/>
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-3 align-self-end">
                             <Notes/>
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-3 align-self-end">
                             <ScheduleVisits/>
                         </div>
 
