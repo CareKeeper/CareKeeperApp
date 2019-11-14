@@ -8,6 +8,8 @@ import ScheduleVisits from './ScheduleVisits';
 import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import '../../stylesheets/Caremanager.css';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 class Caremanager extends React.Component {
@@ -29,12 +31,13 @@ class Caremanager extends React.Component {
 
     render() {
         console.log("Current manager ID: ", this.props.location.state.userID);
+        console.log("Current patient ID: ", this.state.currentPatient)
         return (
 
             <div className="App">
 
                 <header className="App-header">
-                    <br/>
+                    
                     <div className="row text-center">
 
                         <div className="col-lg-3">
@@ -51,6 +54,16 @@ class Caremanager extends React.Component {
                         </div>
                         <div className="col-lg-3 align-self-end">
                             <Notes/>
+                        </div>
+                        <div className="col-lg-3 align-self-end">
+                            <Link to={{
+                                    pathname: "/create_ADL",
+                                    state: {
+                                        currentManager: this.props.location.state.userID
+                                    }
+                                }}>
+                                <Button color="secondary" block>Create ADL List</Button>
+                            </Link>
                         </div>
                         <div className="col-lg-3 align-self-end">
                             <ScheduleVisits/>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import dataADL from '../../dataADL';
 
 import TaskLists from './TaskLists.component'
@@ -10,7 +11,6 @@ export default class CreateADL extends Component {
 
     this.onChangeSelectedListName = this.onChangeSelectedListName.bind(this);
     this.onChangeNewListName = this.onChangeNewListName.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
         careManagerID: '',
@@ -22,8 +22,8 @@ export default class CreateADL extends Component {
 
   //This should mount all saved lists to the dropdown menu
   componentDidMount() {
-    if(this.props.location.state) {
-      var { userID } = this.props.location.state;
+    if(this.props.location.state.currentManager) {
+      var userID = this.props.location.state.currentManager;
       this.setState({
         careManagerID: userID
       }, () => {
@@ -73,16 +73,9 @@ export default class CreateADL extends Component {
     console.log(e.target.value)
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-  }
-
   onSubmit2(newList) {
     if(this.state.newListName.length > 0) {
-      var newww = {
-        //this will be this.props.manager.username
-        //username: 'ManagerUsername', //<-Current manager username REQUIRED FOR UPDATE
+      let newww = {
         customADLs: [{
           name: this.state.newListName,
           order: newList
@@ -105,6 +98,7 @@ export default class CreateADL extends Component {
         });
 
       alert("Your custom list has been added!");
+      //window.location = './CareManager'
     }
     else alert("Please add a name to your custom list.");
   }
@@ -132,53 +126,71 @@ export default class CreateADL extends Component {
     return (
     <div class="card">
       <div class="card-body">
-        <h3>Select ADL List</h3>
-        <form onSubmit={this.onSubmit}> {/*Don't need this form in this component */}
-
-            <div className="form-group"> 
-              <label>Select list: </label>
-              <select ref="listInput"
-                  required
-                  className="form-control"
-                  value={this.state.selectedListName}
-                  onChange={this.onChangeSelectedListName} >
-                  {
-                      this.state.selectList.map(function(item) {
-                      return <option key={item._id} value={item.name}>
-                                {item.name}
-                            </option>;
-                      })
-                  }
-              </select>
-            </div>
-            
-            <div className="form-group text-right">
-              <button type="button" className="btn btn-danger" onClick={this.onDelete.bind(this)} >
-                Delete Selected Custom List
-              </button>
-            </div>
-            <br/>
-
-            <div className="form-group"> 
-            <label>Name for New List: (Must be filled in to create list)</label>
-            <input  type="text"
+      <div className="form-group text-center">
+          <Link to={{
+                      pathname: "/Caremanager",
+                      state: {
+                        userID: this.state.careManagerID
+                      }
+            }}>
+          <button type="button" className="btn btn-secondary">Go Back</button>
+          </Link>
+        </div>
+        <h3 className="text-center">Create/Delete ADL Lists</h3><br/>
+          <div className="form-group"> 
+            <label>Select list: </label>
+            <select ref="listInput"
                 required
                 className="form-control"
-                value={this.state.newListName}
-                onChange={this.onChangeNewListName}
-                />
-            </div><br/>
+                value={this.state.selectedListName}
+                onChange={this.onChangeSelectedListName} >
+                {
+                    this.state.selectList.map(function(item) {
+                      return <option key={item._id} value={item.name}>
+                              {item.name}
+                            </option>;
+                    })
+                }
+            </select>
+          </div>
+            
+          <div className="form-group text-right">
+            <button type="button" className="btn btn-danger" onClick={this.onDelete.bind(this)} >
+              Delete Selected Custom List
+            </button>
+          </div>
+          <br/>
 
-            <label>Select from the following: </label>
-            <div class="container">
-                <TaskLists data={dataADL} onSubmit2={this.onSubmit2.bind(this)} selectedListName={this.state.selectedListName} />
-            </div><br/><br/>
+          <div className="form-group"> 
+          <label>Name for New List: (Must be filled in to create list)</label>
+          <input  type="text"
+              required
+              className="form-control"
+              value={this.state.newListName}
+              onChange={this.onChangeNewListName}
+              />
+          </div><br/>
 
+          <label>Select from the following: </label>
+          <div class="container">
+              <TaskLists 
+                  currentManager={this.state.careManagerID}
+                  data={dataADL} 
+                  onSubmit2={this.onSubmit2.bind(this)} 
+                  selectedListName={this.state.selectedListName} />
+          </div>
 
-            <div className="form-group">
-                <input type="submit" value="Useless Button" className="btn btn-primary" />
-            </div>
-        </form>
+          <div className="form-group text-center">
+          <Link to={{
+                      pathname: "/Caremanager",
+                      state: {
+                        userID: this.state.careManagerID
+                      }
+            }}>
+          <button type="button" className="btn btn-secondary">Go Back</button>
+          </Link>
+        </div>
+          <br/><br/>
 
       </div>
     </div>

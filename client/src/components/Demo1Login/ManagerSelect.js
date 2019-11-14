@@ -32,7 +32,7 @@ class ManagerSelect extends React.Component {
 
 		return (
 			<div class="card">
-			<h4 class="card-header">Care Manager Select</h4>
+			<h6 class="card-header">Select Manager</h6>
 				<div class="card-body">
 					<select class="form-control" ref="managerSelect"
 						onChange={this.changeCurrentManager.bind(this)} >

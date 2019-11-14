@@ -28,7 +28,8 @@ const App = () => {
     <Router>
       <div className="container">
         <Logo />
-        <Navbar /><br/> {/*For testing purposes only*/}
+        <Navbar />
+        <br/> {/*For testing purposes only*/}
         <Switch>
           <Route exact path="/">
             <Redirect to="/Demo1Home"></Redirect>

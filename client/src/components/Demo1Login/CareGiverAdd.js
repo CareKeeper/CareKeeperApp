@@ -17,13 +17,13 @@ class CareGiverAdd extends React.Component {
 
 		return (
 			<div class="card">
-			<h4 class="card-header">Add CareGiver</h4>
+			<h6 class="card-header">Add Caregiver</h6>
 			<div class="card-body">
 				<div class="form-group">
 					<label>Username</label>
-					<input class="form-control" ref="usernameText" placeholder="Insert username here..." />
+					<input class="form-control" ref="usernameText" placeholder="username" />
 					<label>Email</label>
-					<input class="form-control" ref="emailText" placeholder="Insert email here..." />
+					<input class="form-control" ref="emailText" placeholder="email" />
 				</div>
 				<button type="button" class="btn btn-secondary" onClick={this.addCareGiver.bind(this)}>Add</button>
 			</div></div>

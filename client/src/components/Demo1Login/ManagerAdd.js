@@ -17,13 +17,13 @@ class ManagerAdd extends React.Component {
 
 		return (
 			<div class="card">
-			<h4 class="card-header">Add Manager</h4>
+			<h6 class="card-header">Add Manager</h6>
 			<div class="card-body">
 				<div class="form-group">
 					<label>Username</label>
-					<input class="form-control" ref="usernameText" placeholder="Insert username here..." />
+					<input class="form-control" ref="usernameText" placeholder="username" />
 					<label>Email</label>
-					<input class="form-control" ref="emailText" placeholder="Insert email here..." />
+					<input class="form-control" ref="emailText" placeholder="email" />
 				</div>
 				<button type="button" class="btn btn-secondary" onClick={this.addManager.bind(this)}>Add</button>
 			</div></div>
