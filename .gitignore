@@ -13,7 +13,7 @@
 /build
 client/build
 
-/client/src/components/Authentication/config.js
+/client/src/config/config.js
 /server/config/config.js
 
 # misc
