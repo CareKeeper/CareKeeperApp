@@ -22,12 +22,7 @@ class Caregiver extends React.Component {
         {id: 22, checked: false}
       ]
     };
-
-
-
-
   }
-
 
   render() {
     //This will cause the app to crash on clicking any of the buttons
