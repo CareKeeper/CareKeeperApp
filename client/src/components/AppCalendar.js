@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
+import Events from '../calendarEvents';
 
 class AppCalendar extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class AppCalendar extends Component {
     let dd = today.getDate();
     let wholeDate = mm + '/' + dd + '/' + yy;
 
-    state = {
+    this.state = {
       date: new Date(),
       newDate: wholeDate,
     }
@@ -29,14 +30,26 @@ class AppCalendar extends Component {
   }
 
   render() {
-    //const { value } = this.state;
+
+    const mapEvents = Events.map( item => {
+      if (item.date === this.state.newDate) {
+        return (
+          <div key={this.state.date}>{item.details}</div>
+        )
+      }
+    })
+
     return (
-      <div>
-        <Calendar
-          onChange={this.onChange}
-          value={this.state.date}
-          newDate={this.state.newDate}
-        />
+      <div className="row">
+        <div className="col-md-6">
+          <Calendar
+            onChange={this.onChange}
+            value={this.state.date}
+          />
+        </div>
+        <div className="col-md-6">
+          {mapEvents}
+        </div>
       </div>
     );
   }
