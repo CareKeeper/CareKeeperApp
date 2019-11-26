@@ -10,10 +10,14 @@ class AppCalendar extends Component {
     let mm = today.getMonth() + 1;
     let dd = today.getDate();
     let wholeDate = mm + '/' + dd + '/' + yy;
+    let hh = today.getHours();
+    let min = today.getMinutes();
+    let wholeTime = hh + ':' + min;
 
     this.state = {
       date: new Date(),
       newDate: wholeDate,
+      newTime: wholeTime,
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -27,6 +31,7 @@ class AppCalendar extends Component {
       date: date,
       newDate: concatDate
      });
+     console.log(this.state.newTime);
   }
 
   render() {
@@ -34,7 +39,14 @@ class AppCalendar extends Component {
     const mapEvents = Events.map( item => {
       if (item.date === this.state.newDate) {
         return (
-          <div key={this.state.date}>{item.details}</div>
+          <div key={this.state.time}>
+            <div className="row">
+              {item.time}
+            </div>
+            <div className="row">
+              {item.details}
+            </div>
+          </div>
         )
       }
     })
