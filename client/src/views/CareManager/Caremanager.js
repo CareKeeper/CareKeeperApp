@@ -66,7 +66,7 @@ class Caremanager extends React.Component {
                             </Link>
                         </div>
                         <div className="col-lg-3 align-self-end">
-                            <ScheduleVisits/>
+                            <ScheduleVisits currentManager={this.props.location.state.userID}/>
                         </div>
 
                     </div>

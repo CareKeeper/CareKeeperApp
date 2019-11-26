@@ -2,19 +2,38 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import CareGiverSelect from '../../components/Demo1Login/CareGiverSelect';
+import axios from "axios";
 
 
 export default class ScheduleVisits extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { modal: false,name: '',email: ''};
+      this.state = { modal: false,name: '',email: '', selectList: [], date: Date};
   
       this.toggle = this.toggle.bind(this);
       this.handleChangeName = this.handleChangeName.bind(this);
       this.handleChangeEmail = this.handleChangeEmail.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+
+
     }
-  
+
+    addVisit() {
+        const visit = {
+            scheduledStart: this.refs.Date
+
+
+
+        }
+
+
+    }
+
+    componentDidMount() {
+        this.updateCustomLists();
+        this.setState({date: Date()});
+    }
+
     toggle() {
       this.setState({
         modal: !this.state.modal
@@ -23,7 +42,8 @@ export default class ScheduleVisits extends React.Component {
     handleChangeName(event) {
       this.setState({name: event.target.value});
     }
-   
+
+
     handleChangeEmail(event) {
       this.setState({email: event.target.value});
     }
@@ -39,6 +59,21 @@ export default class ScheduleVisits extends React.Component {
             }
         );
         console.log("Current Care Giver ID: ", _id);
+    }
+
+    updateCustomLists(callback) {
+        axios.get('http://localhost:5000/api/managers/'+ this.props.currentManager)
+            .then(res => {
+                this.setState({
+                    selectList: res.data.customADLs
+                }
+                )
+                console.log(this.state.selectList);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        if(callback) callback();
     }
   
   
@@ -59,10 +94,6 @@ export default class ScheduleVisits extends React.Component {
                 </div>
              
               <div className="row">
-               <div className="form-group col-md-4">
-                <label>Email:</label>
-                  <input type="text" value={this.state.email} onChange={this.handleChangeEmail} className="form-control" />
-                 </div>
                 </div>
                 <Form>
             <FormGroup>
@@ -71,6 +102,7 @@ export default class ScheduleVisits extends React.Component {
                 type="date"
                 name="date"
                 id="InputDate"
+                value={this.state.date}
                 placeholder="date placeholder"
                 />
                 <Label for="Time">From:</Label>
@@ -87,14 +119,28 @@ export default class ScheduleVisits extends React.Component {
                 id="Time"
                 placeholder="time placeholder"
                 />
+                <label>Saved ADL List: </label>
+                <select ref="listInput"
+                        required
+                        className="form-control"
+                        value={this.state.selectedListName}>
+                    {
+                        this.state.selectList.map(function(item) {
+                            return <option key={item._id} value={item.name}>
+                                {item.name}
+                            </option>;
+                        })
+                    }
+                </select>
 
-                <Label for="Text">Text Area</Label>
+                <Label for="Text">Notes to Caregiver:</Label>
                 <Input type="textarea" name="text" id="exampleText" />
             </FormGroup>
             </Form>
             </ModalBody>
             <ModalFooter>
-              <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
+              <input type="submit" value="Submit" color="primary" className="btn btn-primary"
+                     onClick={this.addVisit.bind(this)}/>
               <Button color="danger" onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
             </form>
