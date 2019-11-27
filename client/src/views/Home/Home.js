@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from '../../assets/logo.svg';
-import '../../stylesheets/Home.css';
+// src/Home.js
 
-function Home() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                </a>
-            </header>
-        </div>
-    );
-}
+import React, { Component } from 'react';
+import { withAuth } from '@okta/okta-react';
 
-export default Home;
+export default withAuth(class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { authenticated: null };
+    this.checkAuthentication = this.checkAuthentication.bind(this);
+    this.checkAuthentication();
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  async checkAuthentication() {
+    const authenticated = await this.props.auth.isAuthenticated();
+    if (authenticated !== this.state.authenticated) {
+      this.setState({ authenticated });
+    }
+  }
+
+  componentDidUpdate() {
+    this.checkAuthentication();
+  }
+
+  async login() {
+    // Redirect to '/' after login
+    this.props.auth.login('/user');
+  }
+
+  async logout() {
+    // Redirect to '/' after logout
+    this.props.auth.logout('/');
+  }
+
+  render() {
+    if (this.state.authenticated === null) return null;
+    return this.state.authenticated ?
+      <button onClick={this.logout}>Logout</button> :
+      <button onClick={this.login}>Login</button>;
+  }
+});
