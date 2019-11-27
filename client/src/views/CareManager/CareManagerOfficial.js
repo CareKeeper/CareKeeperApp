@@ -113,7 +113,7 @@ class CareManagerOfficial extends React.Component {
                         </div>
                         <div className="col-lg-3 align-self-end">
                             <Link to={{
-                                    pathname: "/create_ADL",
+                                    pathname: "/CreateADL",
                                     state: {
                                         currentManager: this.state.userID
                                     }

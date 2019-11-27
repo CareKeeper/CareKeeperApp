@@ -40,6 +40,7 @@ const App = () => {
 
               {/*Secure Pages*/}
               <SecureRoute path="/CareManagerOfficial" component={CareManagerOfficial} />
+                  <SecureRoute path="/CreateADL" component={CreateADL} />
 
               {/*Test Pages*/}
               <SecureRoute exact path="/user" component={TestUser} />

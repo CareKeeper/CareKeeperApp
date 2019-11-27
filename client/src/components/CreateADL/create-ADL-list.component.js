@@ -30,13 +30,15 @@ export default class CreateADL extends Component {
         this.updateCustomLists();
       })
     }
+    else console.log("DID NOT FIND MANAGER ID");
+    /*
     else{
       this.setState({
         careManagerID: '5dbbb516ad628538809f156c'
       }, () => {
         this.updateCustomLists();
       })
-    }
+    }*/
   }
 
   updateCustomLists(callback) {
@@ -128,7 +130,7 @@ export default class CreateADL extends Component {
       <div className="card-body">
       <div className="form-group text-center">
           <Link to={{
-                      pathname: "/Caremanager",
+                      pathname: "/CareManagerOfficial",
                       state: {
                         userID: this.state.careManagerID
                       }
@@ -182,10 +184,10 @@ export default class CreateADL extends Component {
 
           <div className="form-group text-center">
           <Link to={{
-                      pathname: "/Caremanager",
-                      state: {
+                      pathname: "/CareManagerOfficial",
+                      /*state: {
                         userID: this.state.careManagerID
-                      }
+                      }*/
             }}>
           <button type="button" className="btn btn-secondary">Go Back</button>
           </Link>

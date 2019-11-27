@@ -33,7 +33,7 @@ exports.update = function(req, res) {
 
   /* Replace the listings's properties with the new properties found in req.body */
 	if(req.body.username) manager.username = req.body.username;
-  manager.email = req.body.email;
+  //manager.email = req.body.email;
 
   console.log("Update correctly?: ", req.body.deleteCustom);
   if(req.body.deleteCustom) {

@@ -90,14 +90,7 @@ class TaskLists extends Component {
         </div>
 
         <div className="form-group text-center">
-          <Link to={{
-                      pathname: "/Caremanager",
-                      state: {
-                        userID: this.props.currentManager
-                      }
-            }}>
           <button type="button" className="btn btn-info" onClick={this.onCreate.bind(this)}>Create Custom List</button>
-          </Link>
         </div>
       </div>
     )
