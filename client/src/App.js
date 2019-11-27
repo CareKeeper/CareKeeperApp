@@ -52,7 +52,7 @@ const App = () => {
             <Route exact path="/edit_patient" component={EditPatient} />
             <Route exact path="/create_ADL" component={CreateADL} />
 
-            <Route component={NotFound}/>
+            {/*<Route component={NotFound}/>*/}
 
           </Security>
         </Switch>
