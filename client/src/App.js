@@ -35,12 +35,12 @@ const App = () => {
         <div className="container"> {/*For testing purposes only*/}
         <Switch>
           <Security {...config.oidc}>
-            
-            <Route exact path="/" component={Home}/>
+            <Home /><br/><br/>
+            {/*<Route exact path="/" component={Home}/>*/}
+            <Route exact path ="/">Default Page</Route>
             <Route path='/implicit/callback' component={ImplicitCallback}/>
-            {/* <Route exact path="/" component={Home}>
-              <Redirect to="/Demo1Home"></Redirect>
-            </Route> */}
+
+
             <Route exact path="/user" component={TestUser} />
             <Route exact path="/Demo1Home" component={Demo1Home} />
             <Route exact path="/CareManager" component={Caremanager} />
