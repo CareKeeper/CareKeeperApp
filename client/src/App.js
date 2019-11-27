@@ -42,7 +42,7 @@ const App = () => {
               <SecureRoute path="/CareManagerOfficial" component={CareManagerOfficial} />
 
               {/*Test Pages*/}
-              <Route exact path="/user" component={TestUser} />
+              <SecureRoute exact path="/user" component={TestUser} />
               <Route exact path="/Demo1Home" component={Demo1Home} />
               <Route exact path="/CareManager" component={Caremanager} />
                   <Route exact path="/create_ADL" component={CreateADL} />

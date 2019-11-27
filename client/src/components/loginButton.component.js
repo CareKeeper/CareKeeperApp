@@ -14,7 +14,7 @@ export default class Navbar2 extends Component {
               Okta <Home />
             </li>
             <li className="navbar-item">
-                <Link to="/user" className="nav-link">user</Link>
+                <Link to="/user" className="nav-link">Protected Welcome Page</Link>
             </li>
           </ul>
         </div>

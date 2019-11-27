@@ -16,9 +16,9 @@ class PatientSelect extends React.Component {
             .then(res => {
                 this.setState({
                     patients: res.data
-                });
+                }, () => this.changeCurrentPatient());
             });
-        console.log("Infinite loop?");
+        console.log("Patient List Updated.");
     }
 
     updatePatientList2() {
@@ -35,11 +35,11 @@ class PatientSelect extends React.Component {
     //Meant to update the edit patient data upon loading the page
     //instead of only when a different patient is selected
     componentDidMount() {
-        this.updatePatientList2();
+        //this.updatePatientList2();
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.currentManager !== prevProps.currentManager) {
+        if(this.props.currentManager !== prevProps.currentManager || this.props.currentPatient !== prevProps.currentPatient) {
             this.updatePatientList();
         }
     }
