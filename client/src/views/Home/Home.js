@@ -26,7 +26,7 @@ export default withAuth(class Home extends Component {
 
   async login() {
     // Redirect to '/' after login
-    this.props.auth.login('/user');
+    this.props.auth.login('/LogInClassification');
   }
 
   async logout() {
@@ -37,7 +37,7 @@ export default withAuth(class Home extends Component {
   render() {
     if (this.state.authenticated === null) return null;
     return this.state.authenticated ?
-      <button onClick={this.logout}>Logout</button> :
-      <button onClick={this.login}>Login</button>;
+      <button onClick={this.logout}>OKTA Logout</button> :
+      <button onClick={this.login}>OKTA Login</button>;
   }
 });
