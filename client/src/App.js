@@ -8,15 +8,17 @@ import config from './config/config';
 import Logo from "./components/logo.component";
 import Navbar from "./components/TestingComponents/navbar.component"
 import Navbar2 from "./components/loginButton.component";
+import LogInClassification from './views/Home/LogInClassification';
 
 import CareManagerOfficial from './views/CareManager/CareManagerOfficial'
+    import CreateADL from "./components/CreateADL/create-ADL-list.component"
+import CaregiverOfficial from './views/Caregiver/CaregiverOfficial'
 
 import TestUser from './views/TestUser/TestUser';
 import Demo1Home from "./components/Demo1Login/demo1home.component";
 import Caremanager from './views/CareManager/Caremanager';
 import CaregiverPage from "./views/Caregiver/Caregiver";
 import PatientTest from "./components/TestingComponents/PatientTest"
-import CreateADL from "./components/CreateADL/create-ADL-list.component"
 //import NotFound from "./views/NotFound"
 //import Header from "./components/Header/Header"
 
@@ -30,17 +32,19 @@ const App = () => {
 
         <Switch>
           <Security {...config.oidc}>
-            <Navbar2 /><br/><br/>
+            <Navbar2 /><br/><br/> {/*This has the Okta Login/LogOut Button. From the login.Button.component file */}
             {/*<Route exact path="/" component={Home}/>*/}
 
             <div className="container">
               {/*Default Page*/}
               <Route exact path ="/">Default Page</Route>
               <Route path='/implicit/callback' component={ImplicitCallback}/>
+              <SecureRoute path='/LogInClassification' component={LogInClassification} />
 
               {/*Secure Pages*/}
               <SecureRoute path="/CareManagerOfficial" component={CareManagerOfficial} />
                   <SecureRoute path="/CreateADL" component={CreateADL} />
+              <SecureRoute path="/CaregiverOfficial" component={CaregiverOfficial} />
 
               {/*Test Pages*/}
               <SecureRoute exact path="/user" component={TestUser} />

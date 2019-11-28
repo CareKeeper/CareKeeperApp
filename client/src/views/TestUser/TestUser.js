@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 class TestUser extends Component {
   state = {
     currentUserName: '',
-    currentUserEmail: ''
+    currentUserEmail: '',
   };
 
   componentDidMount() {
     const idToken = JSON.parse(localStorage.getItem('okta-token-storage'));
+    console.log("group? ", idToken.idToken)
     this.setState({
       currentUserEmail: idToken.idToken.claims.email,
-      currentUserName: idToken.idToken.claims.name
+      currentUserName: idToken.idToken.claims.name,
     });
   }
 

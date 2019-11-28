@@ -11,10 +11,10 @@ export default class Navbar2 extends Component {
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav ml-auto text-right">
             <li className="navbar-item nav-link">
-              Okta <Home />
+              <Home />
             </li>
             <li className="navbar-item">
-                <Link to="/user" className="nav-link">Protected Welcome Page</Link>
+                <Link to="/user" className="nav-link">Protected Care Manager Welcome Page</Link>
             </li>
           </ul>
         </div>
