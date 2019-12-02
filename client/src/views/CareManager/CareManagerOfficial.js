@@ -122,7 +122,9 @@ class CareManagerOfficial extends React.Component {
                             </Link>
                         </div>
                         <div className="col-lg-3 align-self-end">
-                            <ScheduleVisits currentManager={this.state.userID}/>
+                            <ScheduleVisits 
+                                currentManager={this.state.userID}
+                                currentPatient={this.state.currentPatient}/>
                         </div>
 
                     </div>

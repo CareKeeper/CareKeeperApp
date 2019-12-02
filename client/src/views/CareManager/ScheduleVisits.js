@@ -9,39 +9,46 @@ export default class ScheduleVisits extends React.Component {
     constructor(props) {
       super(props);
       this.state = { 
-        modal: false,
-        name: '',
-        email: '', 
-        selectList: [], 
+        modal: false, 
         date: Date,
         currentCareGiver: '',
-        selectedListName: ''
+        selectedListIndex: '',
+        selectedListObject: [],
+        selectList: [],
+        notes: ''
       };
   
       this.toggle = this.toggle.bind(this);
-      this.handleChangeName = this.handleChangeName.bind(this);
-      this.handleChangeEmail = this.handleChangeEmail.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
       this.onChangeSelectedListName = this.onChangeSelectedListName.bind(this);
-
-
+      this.onChangeNotes = this.onChangeNotes.bind(this);
     }
 
     addVisit() {
-        const visit = {
-            scheduledStart: this.refs.Date
+      const visit = {
+        //scheduledStart: this.refs.Date,
+        scheduledStart: this.state.date,
+        scheduledFinish: this.state.date,
+        
 
+        patient: this.props.currentPatient,
+        caregiver: this.state.currentCareGiver,
+        ADLlist: {
+          name: this.state.selectedListObject.name,
+          order: this.state.selectedListObject.order
+        },
+        managerNotes: this.state.notes
+      }
 
-
-        }
+      axios.post('http://localhost:5000/api/visits/', visit)
+        .then(res => console.log(res.data))
+        .catch((error) => {
+          console.log(error);
+        });
 
       this.toggle();
-
-
     }
 
     componentDidMount() {
-        //this.updateCustomLists();
         this.setState({date: Date()});
     }
 
@@ -56,30 +63,16 @@ export default class ScheduleVisits extends React.Component {
         modal: !this.state.modal
       });
     }
-    handleChangeName(event) {
-      this.setState({name: event.target.value});
-    }
-
-
-    handleChangeEmail(event) {
-      this.setState({email: event.target.value});
-    }
-  
-    handleSubmit(event) {
-      event.preventDefault();
-       }
 
     changeCurrentCareGiver(_id) {
-        this.setState(
-            {
+        this.setState({
                 currentCareGiver: _id
-            }
-        );
-        console.log("Current SELECTED Care Giver ID: ", _id);
+        }, () => {
+          console.log("Current SELECTED Care Giver ID: ", this.state.currentCareGiver);
+        });
     }
 
     updateCustomLists(callback) {
-        console.log("IS THIS WORKING: ", this.props.currentManager);
         axios.get('http://localhost:5000/api/managers/'+ this.props.currentManager)
             .then(res => {
                 this.setState({
@@ -96,9 +89,17 @@ export default class ScheduleVisits extends React.Component {
 
     onChangeSelectedListName(e) {
       this.setState({
-        selectedListName: e.target.value
+        selectedListIndex: e.target.value,
+        selectedListObject: this.state.selectList[e.target.value]
       }, () => {
-        console.log("Current SELECTED list: ", this.state.selectedListName);
+        console.log("Current SELECTED list Index: ", this.state.selectedListIndex);
+        console.log("Current SELECTED list Object: ", this.state.selectedListObject);
+      })
+    }
+
+    onChangeNotes(e) {
+      this.setState({
+        notes: e.target.value
       })
     }
   
@@ -146,18 +147,20 @@ export default class ScheduleVisits extends React.Component {
                     <select ref="listInput"
                       required
                       className="form-control"
-                      value={this.state.selectedListName}
+                      value={this.state.selectedListIndex}
                       onChange={this.onChangeSelectedListName} >
                     {
-                      this.state.selectList.map(function(item) {
-                          return <option key={item._id} value={item.name}>
+                      this.state.selectList.map(function(item, index) {
+                          return <option key={index} value={index}>
                               {item.name}
                             </option>;
                       })
                     }
                     </select>
                     <Label for="Text">Notes to Caregiver:</Label>
-                    <Input type="textarea" name="text" id="exampleText" />
+                    <Input type="textarea"
+                      value={this.state.Notes} 
+                      onChange={this.onChangeNotes} />
                   </FormGroup>
                 </Form>
               </ModalBody>
