@@ -9,7 +9,9 @@ export default class ScheduleVisits extends React.Component {
     constructor(props) {
       super(props);
       this.state = { 
-        modal: false, 
+        modal: false,
+        patientName: '',
+
         date: Date,
 
         justDate: null,
@@ -33,10 +35,10 @@ export default class ScheduleVisits extends React.Component {
     addVisit() {
       const visit = {
         //scheduledStart: this.refs.Date,
+
         scheduledDate: this.state.justDate,
         scheduledStartTime: this.state.startTime,  //required to submit, value for testing only
         scheduledFinishTime: this.state.endTime,
-
 
         patient: this.props.currentPatient,
         caregiver: this.state.currentCareGiver,
@@ -66,6 +68,18 @@ export default class ScheduleVisits extends React.Component {
     componentDidUpdate(prevProps) {
       if(this.props.currentManager !== prevProps.currentManager) {
         this.updateCustomLists();
+      }
+      if(this.props.currentPatient !== prevProps.currentPatient) {
+        //get Patient Name
+        axios.get('http://localhost:5000/api/patients/' + this.props.currentPatient)
+          .then(res => {
+            this.setState({
+              patientName: res.data.nickname
+            },() => console.log("Current Patient Name: ", this.state.patientName))
+          })
+          .catch((error) => {
+            console.log("Patient not able to be retrieved: ", error);
+          });
       }
     }
 
@@ -137,7 +151,7 @@ export default class ScheduleVisits extends React.Component {
           <div>
           <Button color="secondary"  onClick={this.toggle} block>Schedule Visit</Button>
           <Modal isOpen={this.state.modal}>
-              <ModalHeader>Schedule Visit</ModalHeader>
+              <ModalHeader>Schedule Visit for {this.state.patientName}</ModalHeader>
 
               <ModalBody>
                 <div className="form-row">
