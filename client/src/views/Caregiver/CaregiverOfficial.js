@@ -67,6 +67,7 @@ class CaregiverOfficial extends React.Component {
     };
     this.checkAuthentication = checkAuthentication.bind(this);
     this.OktaToAtlas = OktaToAtlas.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
   }
 
     async componentDidMount() {
@@ -75,6 +76,20 @@ class CaregiverOfficial extends React.Component {
 
     async componentDidUpdate() {
         //this.checkAuthentication();
+    }
+
+    handleCheck = (e) => {
+      console.log('running');
+      // this.setState(state => {
+      //   const array = state.taskArray.map((item, j) => {
+      //     if (j === e) {
+      //       return item+1; (thats the ex)
+      //       console.log(j);
+      //       console.log(e);
+      //       console.log(item);
+      //     }
+      //   })
+      // })
     }
 
   render() {
@@ -96,7 +111,8 @@ class CaregiverOfficial extends React.Component {
               <div className="component-wrapper RHS-wrapper">
                 < CaregiverCheckboxArea
                   data={data}
-                  taskArray={this.state.taskArray} />
+                  taskArray={this.state.taskArray}
+                  handleCheck={this.handleCheck} />
               </div>
             </div>
             <div className="page-wrapper">

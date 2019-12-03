@@ -5,7 +5,6 @@ class CaregiverCheckbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskComplete: false,
       message: ""
     };
 
@@ -17,10 +16,12 @@ class CaregiverCheckbox extends React.Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-
+    const id = target.id;
     this.setState({
-      [name]: value
+      [name]: value,
     });
+    console.log(name);
+    console.log(id);
   }
 
   handleSubmit(event) {
@@ -36,7 +37,9 @@ class CaregiverCheckbox extends React.Component {
 
         <TaskList
         data={this.props.data}
-        taskArray={this.props.taskArray} />
+        taskArray={this.props.taskArray}
+        handleChange={this.handleChange}
+        handleCheck={this.props.handleCheck} />
 
 
           <div className="form-group">
