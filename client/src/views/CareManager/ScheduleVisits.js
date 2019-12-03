@@ -11,6 +11,10 @@ export default class ScheduleVisits extends React.Component {
       this.state = { 
         modal: false, 
         date: Date,
+
+        justDate: null,
+        startTime: null,
+        endTime: null,
         currentCareGiver: '',
         selectedListIndex: '',
         selectedListObject: [],
@@ -19,6 +23,9 @@ export default class ScheduleVisits extends React.Component {
       };
   
       this.toggle = this.toggle.bind(this);
+      this.onChangeJustDate = this.onChangeJustDate.bind(this);
+      this.onChangeStartTime = this.onChangeStartTime.bind(this);
+      this.onChangeEndTime = this.onChangeEndTime.bind(this);
       this.onChangeSelectedListName = this.onChangeSelectedListName.bind(this);
       this.onChangeNotes = this.onChangeNotes.bind(this);
     }
@@ -26,9 +33,10 @@ export default class ScheduleVisits extends React.Component {
     addVisit() {
       const visit = {
         //scheduledStart: this.refs.Date,
-        scheduledStart: this.state.date,
-        scheduledFinish: this.state.date,
-        
+        scheduledDate: this.state.justDate,
+        scheduledStartTime: this.state.startTime,  //required to submit, value for testing only
+        scheduledFinishTime: this.state.endTime,
+
 
         patient: this.props.currentPatient,
         caregiver: this.state.currentCareGiver,
@@ -40,9 +48,12 @@ export default class ScheduleVisits extends React.Component {
       }
 
       axios.post('http://localhost:5000/api/visits/', visit)
-        .then(res => console.log(res.data))
+        .then(res => {
+          console.log("Visit Saved: ", res.data);
+          alert("Your visit has been scheduled.");
+        })
         .catch((error) => {
-          console.log(error);
+          console.log("Visit not saved: ", error);
         });
 
       this.toggle();
@@ -77,14 +88,30 @@ export default class ScheduleVisits extends React.Component {
             .then(res => {
                 this.setState({
                     selectList: res.data.customADLs
-                }
-                )
-                console.log(this.state.selectList);
+                })
             })
             .catch((error) => {
                 console.log(error);
             });
         if(callback) callback();
+    }
+
+    onChangeJustDate(e) {
+      this.setState({
+        justDate: e.target.value
+      }, () => console.log("JUST DATE: ", this.state.justDate))
+    }
+
+    onChangeStartTime(e) {
+      this.setState({
+        startTime: e.target.value
+      }, () => console.log("START TIME: ", this.state.startTime))
+    }
+
+    onChangeEndTime(e) {
+      this.setState({
+        endTime: e.target.value
+      }, () => console.log("END TIME: ", this.state.endTime))
     }
 
     onChangeSelectedListName(e) {
@@ -121,26 +148,34 @@ export default class ScheduleVisits extends React.Component {
                 
                 <Form>
                   <FormGroup>
-                    <Label for="InputDate">Date</Label>
+                    <Label for="InputDate">Deciding Date Format (JSON, Mongoose DATE Schema) This will not submit yet.</Label>
                     <Input
                       type="date"
-                      name="date"
                       id="InputDate"
                       value={this.state.date}
                       placeholder="date placeholder"
                     />
-                    <Label for="Time">From:</Label>
+                    <Label for="Just Date">Just Date (Will Submit)</Label>
+                    <Input
+                      type="date"
+                      id="Just Date"
+                      value={this.state.justDate}
+                      onChange = {this.onChangeJustDate}
+                    />
+                    <Label for="Start Time">From:</Label>
                     <Input
                       type="time"
-                      name="time"
-                      id="Time"
+                      id="Start Time"
+                      value = {this.state.startTime}
+                      onChange = {this.onChangeStartTime}
                       placeholder="time placeholder"
                     />
-                    <Label for="Time">To:</Label>
+                    <Label for="End Time">To:</Label>
                     <Input
                       type="time"
-                      name="time"
-                      id="Time"
+                      id="End Time"
+                      value = {this.state.endTime}
+                      onChange = {this.onChangeEndTime}
                       placeholder="time placeholder"
                     />
                     <label>ADL List: </label>
