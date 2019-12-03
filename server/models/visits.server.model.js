@@ -12,16 +12,24 @@ var ADLresultsSchema = new Schema({
 });
 
 var visitSchema = new Schema({
-    scheduledStart: {type: Date, required: true},
-    scheduledFinish: {type: Date, required: true},
-    actualStart: {type: Date},
-    actualFinish: {type: Date},
+    scheduledStart: {type: Date}, //Original - Need to figure out how to make this work
+    scheduledFinish: {type: Date},
+
+    //Visit Creation by Care Manager
+    scheduledDate: {type:String, required: true}, //Temporary workable
+    scheduledStartTime: {type: String, required: true},
+    scheduledFinishTime: {type:String, required: true},
     patient: {type: Schema.Types.ObjectId, required: true},
     caregiver: {type: Schema.Types.ObjectId, required: true},
     ADLlist: {type: customADLsSchema, required: true},
-    ADLresults: {type: ADLresultsSchema},
     managerNotes: String,
+
+    //Live Updates from Caregiver
+    actualStart: {type: Date},
+    actualFinish: {type: Date},
+    ADLresults: {type: ADLresultsSchema},
     caregiverNotes: String,
+
     created_at: Date,
     updated_at: Date
 });
