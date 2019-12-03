@@ -35,6 +35,10 @@
   width: 100%;
 }
 
+.item-space {
+  margin-bottom: 1%;
+}
+
 .LHS-wrapper {
   width: 35%;
 }

@@ -49,6 +49,11 @@ class AppCalendar extends Component {
           </div>
         )
       }
+      else {
+        return (
+          <span> </span>
+        )
+      }
     })
 
     return (

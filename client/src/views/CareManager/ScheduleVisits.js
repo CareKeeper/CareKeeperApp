@@ -149,7 +149,7 @@ export default class ScheduleVisits extends React.Component {
       return (
   
           <div>
-          <Button color="secondary"  onClick={this.toggle} block>Schedule Visit</Button>
+          <Button color="primary"  onClick={this.toggle} block>Schedule Visit</Button>
           <Modal isOpen={this.state.modal}>
               <ModalHeader>Schedule Visit for {this.state.patientName}</ModalHeader>
 

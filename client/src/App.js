@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
 import config from './config/config';
 
@@ -32,7 +32,7 @@ const App = () => {
 
         <Switch>
           <Security {...config.oidc}>
-            <Navbar2 /><br/><br/> {/*This has the Okta Login/LogOut Button. From the login.Button.component file */}
+            <Navbar2 /><br/> {/*This has the Okta Login/LogOut Button. From the login.Button.component file */}
             {/*<Route exact path="/" component={Home}/>*/}
 
             <div className="container">

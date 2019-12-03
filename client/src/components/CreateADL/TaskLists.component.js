@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import SelectFrom from './selectFrom.component';
 import SelectedTasks from './selectedTasks.component';

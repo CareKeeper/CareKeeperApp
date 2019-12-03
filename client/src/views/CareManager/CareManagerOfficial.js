@@ -3,17 +3,17 @@ import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
 import axios from 'axios';
-
+import '../../stylesheets/Caremanager.css';
 
 import PatientSelect from './patientSelect.component';
 import CreatePatient from './create-patient.component'
 import EditPatient from './edit-patient.component'
+import ScheduleVisits from './ScheduleVisits';
 import Invite from './Invite'
 import Notes from "./Notes"
-import ScheduleVisits from './ScheduleVisits';
 import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
-import '../../stylesheets/Caremanager.css';
+import TestDisplayVisits from './test-display-visits.component';
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -90,43 +90,48 @@ class CareManagerOfficial extends React.Component {
             <div className="App">
 
                 <header className="App-header">
-                    
-                    <div className="row text-center">
 
-                        <div className="col-lg-3">
+                    <div className="container">
+                        <div className="row item-space">
+                            <div className = "col">
                             <PatientSelect
-                                 currentManager = {this.state.userID} 
-                                 changeCurrentPatient={this.changeCurrentPatient.bind(this)}
-                                 currentPatient = {this.state.currentPatient}/>
+                                currentManager = {this.state.userID} 
+                                changeCurrentPatient={this.changeCurrentPatient.bind(this)}
+                                currentPatient = {this.state.currentPatient}/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <CreatePatient currentManager = {this.state.userID} changeCurrentPatient={this.changeCurrentPatient.bind(this)}/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <EditPatient currentPatient = {this.state.currentPatient} />
+                            </div>
                         </div>
-                        <div className="col-lg-3 align-self-end">
-                            <CreatePatient currentManager = {this.state.userID} changeCurrentPatient={this.changeCurrentPatient.bind(this)}/>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <EditPatient currentPatient = {this.state.currentPatient} />
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <Invite/>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <Notes/>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <Link to={{
-                                    pathname: "/CreateADL",
-                                    state: {
-                                        currentManager: this.state.userID
-                                    }
-                                }}>
-                                <Button color="secondary" block>Create ADL List</Button>
-                            </Link>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <ScheduleVisits 
-                                currentManager={this.state.userID}
-                                currentPatient={this.state.currentPatient}/>
-                        </div>
+                    </div>
 
+                    <div className="container">
+                        <div className="row text-center">
+                            <div className="col-lg-3 align-self-end">
+                                <Link to={{
+                                        pathname: "/CreateADL",
+                                        state: {
+                                            currentManager: this.state.userID
+                                        }
+                                    }}>
+                                    <Button color="primary" block>Create ADL List</Button>
+                                </Link>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <ScheduleVisits 
+                                    currentManager={this.state.userID}
+                                    currentPatient={this.state.currentPatient}/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <Invite/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <Notes/>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -141,8 +146,13 @@ class CareManagerOfficial extends React.Component {
                             <div className="component-wrapper RHS-wrapper">
                             </div>
                         </div>
-
                     </div>
+
+
+                    <div className="container component-wrapper">
+                        <TestDisplayVisits currentPatient={this.state.currentPatient}/>
+                    </div>
+
                 </header>
             </div>
 
