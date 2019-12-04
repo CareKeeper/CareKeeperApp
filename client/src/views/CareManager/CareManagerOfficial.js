@@ -14,6 +14,7 @@ import Notes from "./Notes"
 import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
+import Timesheet from './Timesheet';
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -25,7 +26,10 @@ function OktaToAtlas(email) {
                         if(m.email.toLowerCase() === email.toLowerCase()) {
                             this.setState({
                                 userID: m._id
-                            }, () => console.log("USERID UPDATED: ", this.state.userID));
+                            }, () => {
+                                console.log("USERID UPDATED: ", this.state.userID);
+                                this.getVisits();
+                            });
                         }
                     }
                     catch {
@@ -57,6 +61,7 @@ class CareManagerOfficial extends React.Component {
         this.state = {
             userinfo: null,
             userID: null,
+            visits: null,
             currentPatient: ""
         }
         this.checkAuthentication = checkAuthentication.bind(this);
@@ -68,7 +73,23 @@ class CareManagerOfficial extends React.Component {
     }
     
     async componentDidUpdate() {
-        //this.checkAuthentication();
+        
+    }
+
+    getVisits() {
+        console.log("GET VISITS: ");
+        let url = 'http://localhost:5000/api/visits/byManager/' + this.state.userID;
+        axios.get(url)
+            .then(res => {
+                this.setState({
+                    visits: res.data
+                }, () => {
+                    console.log("VISITS FOR THIS CARE MANAGER: ", this.state.visits);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     changeCurrentPatient(_id) {
@@ -147,7 +168,15 @@ class CareManagerOfficial extends React.Component {
 
 
                     <div className="container component-wrapper">
-                        <TestDisplayVisits currentPatient={this.state.currentPatient}/>
+                        {/*THIS DISPLAYS VISITS BY CURRENTLY SELECTED PATIENT */}
+                        <TestDisplayVisits 
+                            currentPatient={this.state.currentPatient}
+                            visits={this.state.visits} />
+                    </div>
+
+                    <div className="container component-wrapper">
+                        {/*THIS DISPLAYS ALL CARE MANAGER VISITS */}
+                        <Timesheet visits={this.state.visits}/>
                     </div>
 
                 </header>

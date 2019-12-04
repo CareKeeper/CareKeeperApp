@@ -19,6 +19,7 @@ var visitSchema = new Schema({
     scheduledDate: {type:String, required: true}, //Temporary workable
     scheduledStartTime: {type: String, required: true},
     scheduledFinishTime: {type:String, required: true},
+    careManager: {type: Schema.Types.ObjectId},
     patient: {type: Schema.Types.ObjectId, required: true},
     caregiver: {type: Schema.Types.ObjectId, required: true},
     ADLlist: {type: customADLsSchema, required: true},

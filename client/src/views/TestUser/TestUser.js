@@ -9,7 +9,7 @@ class TestUser extends Component {
 
   componentDidMount() {
     const idToken = JSON.parse(localStorage.getItem('okta-token-storage'));
-    console.log("group? ", idToken.idToken)
+    console.log("idToken: ", idToken.idToken)
     this.setState({
       currentUserEmail: idToken.idToken.claims.email,
       currentUserName: idToken.idToken.claims.name,

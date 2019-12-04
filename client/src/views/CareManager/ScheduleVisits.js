@@ -40,6 +40,7 @@ export default class ScheduleVisits extends React.Component {
         scheduledStartTime: this.state.startTime,  //required to submit, value for testing only
         scheduledFinishTime: this.state.endTime,
 
+        careManager: this.props.currentManager,
         patient: this.props.currentPatient,
         caregiver: this.state.currentCareGiver,
         ADLlist: {
