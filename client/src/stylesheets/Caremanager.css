@@ -47,6 +47,17 @@
   width: 62%;
 }
 
+.test-text {
+  font-size: calc(10px + 1vmin);
+}
+
+.timesheet-table {
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: calc(10px + 1vmin);
+  background-color: white;
+}
+
 #AddNotes {
   min-height: 50px;
 }

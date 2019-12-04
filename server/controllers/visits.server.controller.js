@@ -71,6 +71,19 @@ exports.list = function(req, res) {
     });
 };
 
+exports.byManager = function(req, res) {
+    const managerID = req.params.managerID;
+
+    Visit.find({careManager: managerID}, function(err, result) {
+        if (err) {
+            console.log(err);
+            res.status(400).send(err);
+        } else {
+            res.json(result);
+        }
+    });
+};
+
 exports.byPatient = function(req, res) {
     const patientID = req.params.patientID;
 

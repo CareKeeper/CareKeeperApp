@@ -11,6 +11,9 @@ router.route('/byCaregiver/:caregiverID')
 router.route('/byPatient/:patientID')
     .get(visits.byPatient);
 
+router.route('/byManager/:managerID')
+    .get(visits.byManager);
+
 router.route('/')
     .get(visits.list)
     .post(visits.create);

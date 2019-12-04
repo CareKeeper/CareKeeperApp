@@ -6,45 +6,69 @@ export default class TestDisplayVisits extends React.Component {
     constructor(props) {
       super(props);
       this.state = { 
-        visitsList: null
+        visitsWithNames: [],
+        currenPatientName: ''
       };
     }
 
-    componentDidMount() {
-        //this.getVisits();
-    }
-
     componentDidUpdate(prevProps) {
-      if(this.props.currentPatient !== prevProps.currentPatient) {
-        this.getVisits();
+      if(this.props.currentPatient !== prevProps.currentPatient || this.props.visits !== prevProps.visits) {
+        if(this.props.visits !== null) this.getVisitsOfPatient();
       }
     }
 
-    getVisits(callback) {
-        axios.get('http://localhost:5000/api/visits/byPatient/'+ this.props.currentPatient)
-            .then(res => {
-                console.log("RETRIEVED VISITS: ", res);
-                this.setState({
-                    visitsList: res.data
-                }, () => {
-                    console.log("VISITS: ", this.state.visitsList);
+    getVisitsOfPatient() {
+        let patsOnly = [];
+        this.props.visits.forEach((v,i,arr) => {
+            if(v.patient === this.props.currentPatient) {
+                patsOnly.push(v);
+                if(i === (arr.length - 1)) {
+                    this.getNames(patsOnly);
+                }
+            }
+        })
+    }
+
+    getNames(patsOnly) {
+        let newList = patsOnly;
+        
+        patsOnly.forEach((v,i,arr) => {
+            //get patient name
+            axios.get('http://localhost:5000/api/patients/' + v.patient)
+                .then(res => {
+                    newList[i].patientName = res.data.nickname;
+                    //get caregiver name
+                    axios.get('http://localhost:5000/api/caregivers/' + v.caregiver)
+                    .then(res2 => {
+                        newList[i].caregiverName = res2.data.username;
+                    })
+                    .then(() => {
+                        if(i === (arr.length - 1)) {
+                            return this.updateVisitsWithNames(newList);
+                        }
+                    })
+                    .catch(error => console.log(error));
                 })
-            })
-            .catch((error) => {
-                console.log("No visits: ", error);
-            });
-        if(callback) callback();
+                .catch(error => console.log(error));
+        })
+    }
+
+    updateVisitsWithNames(newList) {
+        this.setState({
+            visitsWithNames: newList,
+            currentPatientName: newList[0].patientName
+        }, () => console.log("PATIENT VISITS WITH NAMES: ", this.state.visitsWithNames))
     }
   
   
     render() {
         var visits = null;
-        if(this.state.visitsList != null) {
-            if(this.state.visitsList.length > 0) {
-                visits = this.state.visitsList.map((v,i) => {
+        if(this.state.visitsWithNames != null) {
+            if(this.state.visitsWithNames.length > 0) {
+                visits = this.state.visitsWithNames.map((v,i) => {
                     return (
                         <ol key={i}>
-                            <li className="text-left">Caregiver: {v.caregiver}</li>
+                            <li className="text-left">Caregiver: {v.caregiverName}</li>
                             <li className="text-left">Scheduled Date: {v.scheduledDate}</li>
                             <li className="text-left">Notes: {v.managerNotes}</li>
                         </ol>
@@ -56,8 +80,8 @@ export default class TestDisplayVisits extends React.Component {
 
       return (
   
-          <div className="row">
-              <h3>Display Visits of Patient</h3>
+          <div className="test-text">
+              <h3 className="text-center">Displaying Visits for {this.state.currentPatientName}</h3>
               {visits}
           </div>
         

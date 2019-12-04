@@ -52,9 +52,7 @@ class PatientDropdown extends React.Component {
               this.getPatientList()
             });
         })
-        .catch(error => {
-          console.log("NO PATIENTS FOR THIS CAREGIVER: ", error);
-        })
+        .catch(error => console.log(error));
   }
 
   componentDidUpdate(prevProps) {
