@@ -13,9 +13,6 @@ export default class Navbar2 extends Component {
             <li className="navbar-item nav-link">
               <Home />
             </li>
-            <li className="navbar-item">
-                <Link to="/user" className="nav-link">Protected Care Manager Welcome Page</Link>
-            </li>
           </ul>
         </div>
       </nav>

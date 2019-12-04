@@ -33,7 +33,7 @@ export default class Invite extends React.Component {
       return (
   
           <div>
-          <Button color="secondary"  onClick={this.toggle} block>Invite Caregiver</Button>
+          <Button color="danger" onClick={this.toggle} block>Invite Caregiver</Button>
           <Modal isOpen={this.state.modal}>
             <form onSubmit={this.handleSubmit}>
             

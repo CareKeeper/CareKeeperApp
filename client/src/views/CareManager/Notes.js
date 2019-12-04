@@ -30,7 +30,7 @@ export default class Notes extends React.Component {
       return (
   
           <div>
-          <Button color="secondary"  onClick={this.toggle} block>Add Notes</Button>
+          <Button color="danger"  onClick={this.toggle} block>Add Notes</Button>
           <Modal isOpen={this.state.modal}>
             <ModalHeader>Add Notes</ModalHeader>
             <ModalBody>
