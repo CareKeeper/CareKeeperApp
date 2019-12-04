@@ -7,11 +7,11 @@ class WorkSched extends React.Component {
       var visits;
 
       if(this.props.visits !== null) {
-        visits = this.props.visits.map(v => {
+        visits = this.props.visits.map((v,i) => {
           return (
-            <div className="text-left">
+            <div className="text-left" key={i}>
               <h6>Visit on {v.scheduledDate}</h6>
-              <ul>
+              <ul key={i}>
                 <li>With Patient#: {v.patient}</li>
                 <li>Start at: {v.scheduledStartTime}</li>
                 <li>End at: {v.scheduledFinishTime}</li>

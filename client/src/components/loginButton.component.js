@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Home from '../views/Home/Home';
 
 export default class Navbar2 extends Component {
