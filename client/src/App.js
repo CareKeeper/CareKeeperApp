@@ -37,7 +37,9 @@ const App = () => {
 
             <div className="container">
               {/*Default Page*/}
-              <Route exact path ="/">Default Page</Route>
+              <Route exact path ="/">
+                <h3 className="text-center"> Welcome </h3>
+              </Route>
               <Route path='/implicit/callback' component={ImplicitCallback}/>
               <SecureRoute path='/LogInClassification' component={LogInClassification} />
 
