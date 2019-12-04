@@ -23,7 +23,6 @@ function OktaToAtlas(email) {
                 res.data.forEach(m => {
                     try {
                         if(m.email.toLowerCase() === email.toLowerCase()) {
-                            console.log("m._id: ", m._id);
                             this.setState({
                                 userID: m._id
                             }, () => console.log("USERID UPDATED: ", this.state.userID));
@@ -58,7 +57,6 @@ class CareManagerOfficial extends React.Component {
         this.state = {
             userinfo: null,
             userID: null,
-            currentUserEmail: '',
             currentPatient: ""
         }
         this.checkAuthentication = checkAuthentication.bind(this);
@@ -81,7 +79,6 @@ class CareManagerOfficial extends React.Component {
     }
 
     render() {
-        //console.log("Current manager ID: ", this.props.location.state.userID);
         console.log("Current Okta Manager: ", this.state.userinfo);
         console.log("Current AtlasID: ", this.state.userID);
         console.log("Current Patient ID: ", this.state.currentPatient);
