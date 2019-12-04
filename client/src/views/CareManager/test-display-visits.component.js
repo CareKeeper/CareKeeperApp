@@ -22,9 +22,9 @@ export default class TestDisplayVisits extends React.Component {
         this.props.visits.forEach((v,i,arr) => {
             if(v.patient === this.props.currentPatient) {
                 patsOnly.push(v);
-                if(i === (arr.length - 1)) {
-                    this.getNames(patsOnly);
-                }
+            }
+            if(i === (arr.length - 1)) {
+                this.getNames(patsOnly);
             }
         })
     }
@@ -82,6 +82,7 @@ export default class TestDisplayVisits extends React.Component {
   
           <div className="test-text">
               <h3 className="text-center">Displaying Visits for {this.state.currentPatientName}</h3>
+              <h3> ID: {this.props.currentPatient}</h3>
               {visits}
           </div>
         
