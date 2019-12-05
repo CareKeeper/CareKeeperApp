@@ -28,7 +28,7 @@ const App = () => {
   return (
     <Router>
         <Logo />
-        <Navbar/>
+        {/*<Navbar/>*/} {/*For testing only*/}
 
         <Switch>
           <Security {...config.oidc}>

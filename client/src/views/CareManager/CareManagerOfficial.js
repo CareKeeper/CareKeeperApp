@@ -11,7 +11,7 @@ import EditPatient from './edit-patient.component'
 import ScheduleVisits from './ScheduleVisits';
 import Invite from './Invite'
 import Notes from "./Notes"
-import DoubleButton from '../../components/googleCalendar';
+//import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
 import Timesheet from './Timesheet';
@@ -157,7 +157,7 @@ class CareManagerOfficial extends React.Component {
                         <div className="page-wrapper">
                             <div className="component-wrapper LHS-wrapper">
 
-                                <DoubleButton/>
+                                {/*<DoubleButton/>*/}
                                 <br/>
                                 <NewCalendar/>
                             </div>
