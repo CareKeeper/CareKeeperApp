@@ -4,7 +4,7 @@ import { withAuth } from '@okta/okta-react';
 function LinkTo(userType) {
     console.log("LinkTo", userType);
     if(userType.toLowerCase() === "care manager") {
-        window.location = './user'
+        window.location = './CareManagerOfficial'
     }
     else if((userType.toLowerCase() === "caregiver") || (userType.toLowerCase() === "care giver")) {
         window.location = './CaregiverOfficial'
@@ -41,7 +41,7 @@ class LogInClassification extends React.Component {
     render() {
         return (
             <div>
-                <p>Logging in...</p>
+                <p>Loading...</p>
             </div>
         )
     };

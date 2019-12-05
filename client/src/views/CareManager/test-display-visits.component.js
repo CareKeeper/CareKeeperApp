@@ -82,7 +82,6 @@ export default class TestDisplayVisits extends React.Component {
   
           <div className="test-text">
               <h3 className="text-center">Displaying Visits for {this.state.currentPatientName}</h3>
-              <h3> ID: {this.props.currentPatient}</h3>
               {visits}
           </div>
         
