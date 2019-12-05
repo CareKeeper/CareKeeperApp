@@ -27,8 +27,9 @@ class PatientDropdown extends React.Component {
   }
 
   getPatientList() {
-    let pats = this.state.visits.map(v => v.patient);
     let patObjs = [];
+    let pats = [...new Set(this.state.visits.map(v => v.patient))];
+    
     pats.forEach((p,i,arr) => {
       axios.get('http://localhost:5000/api/patients/' + p)
         .then(res => {
@@ -71,7 +72,7 @@ class PatientDropdown extends React.Component {
 
   render() {
     return (
-      <div>
+      
         <div>
           <h6>Current Patient</h6>
           <select className="form-control" ref="patientSelect"
@@ -81,32 +82,6 @@ class PatientDropdown extends React.Component {
                 )}
           </select>
         </div>
-        
-        {/*Don't think we need this portion anymore */}
-        <div className="dropdown patient-dropdown">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false">
-            Patient Dropdown
-          </button>
-            <div className="dropdown-menu" labelledby="dropdownMenuButton">
-              <span
-                className="dropdown-item"
-                name="Patient 1">
-                Patient 1
-              </span>
-              <span
-                className="dropdown-item"
-                name="Patient 2">
-                Patient 2
-              </span>
-            </div>
-          </div>
-      </div>
 
     );
   }

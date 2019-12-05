@@ -106,8 +106,7 @@ class CaregiverOfficial extends React.Component {
                 < PatientDropdown 
                     currentCaregiver={this.state.userID} 
                     changeCurrentPatient={this.changeCurrentPatient.bind(this)}
-                    changeCurrentVisits={this.changeCurrentVisits.bind(this)}
-                    currentPatient = {this.state.currentPatient} />
+                    changeCurrentVisits={this.changeCurrentVisits.bind(this)} />
                 < CaregiverLogArea />
                 < RecentLogs />
               </div>
