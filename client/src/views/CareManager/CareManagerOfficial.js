@@ -11,9 +11,9 @@ import EditPatient from './edit-patient.component'
 import Invite from './Invite'
 import Notes from "./Notes"
 import ScheduleVisits from './ScheduleVisits';
-import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import '../../stylesheets/Caremanager.css';
+import AddEventsCalendar from './AddEventsCalendar';
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -134,9 +134,8 @@ class CareManagerOfficial extends React.Component {
                         <div className="page-wrapper">
                             <div className="component-wrapper LHS-wrapper">
 
-                                <DoubleButton/>
-                                <br/>
                                 <NewCalendar/>
+                               
                             </div>
                             <div className="component-wrapper RHS-wrapper">
                             </div>
