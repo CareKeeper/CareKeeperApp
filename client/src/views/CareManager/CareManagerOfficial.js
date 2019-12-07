@@ -3,17 +3,18 @@ import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
 import axios from 'axios';
-
+import '../../stylesheets/Caremanager.css';
 
 import PatientSelect from './patientSelect.component';
 import CreatePatient from './create-patient.component'
 import EditPatient from './edit-patient.component'
+import ScheduleVisits from './ScheduleVisits';
 import Invite from './Invite'
 import Notes from "./Notes"
-import ScheduleVisits from './ScheduleVisits';
+//import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
-import '../../stylesheets/Caremanager.css';
-import AddEventsCalendar from './AddEventsCalendar';
+import TestDisplayVisits from './test-display-visits.component';
+import Timesheet from './Timesheet';
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -23,10 +24,12 @@ function OktaToAtlas(email) {
                 res.data.forEach(m => {
                     try {
                         if(m.email.toLowerCase() === email.toLowerCase()) {
-                            console.log("m._id: ", m._id);
                             this.setState({
                                 userID: m._id
-                            }, () => console.log("USERID UPDATED: ", this.state.userID));
+                            }, () => {
+                                console.log("USERID UPDATED: ", this.state.userID);
+                                this.getVisits();
+                            });
                         }
                     }
                     catch {
@@ -58,7 +61,7 @@ class CareManagerOfficial extends React.Component {
         this.state = {
             userinfo: null,
             userID: null,
-            currentUserEmail: '',
+            visits: null,
             currentPatient: ""
         }
         this.checkAuthentication = checkAuthentication.bind(this);
@@ -70,7 +73,23 @@ class CareManagerOfficial extends React.Component {
     }
     
     async componentDidUpdate() {
-        //this.checkAuthentication();
+        
+    }
+
+    getVisits() {
+        console.log("GET VISITS: ");
+        let url = 'http://localhost:5000/api/visits/byManager/' + this.state.userID;
+        axios.get(url)
+            .then(res => {
+                this.setState({
+                    visits: res.data
+                }, () => {
+                    console.log("VISITS FOR THIS CARE MANAGER: ", this.state.visits);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     changeCurrentPatient(_id) {
@@ -81,7 +100,6 @@ class CareManagerOfficial extends React.Component {
     }
 
     render() {
-        //console.log("Current manager ID: ", this.props.location.state.userID);
         console.log("Current Okta Manager: ", this.state.userinfo);
         console.log("Current AtlasID: ", this.state.userID);
         console.log("Current Patient ID: ", this.state.currentPatient);
@@ -90,43 +108,48 @@ class CareManagerOfficial extends React.Component {
             <div className="App">
 
                 <header className="App-header">
-                    
-                    <div className="row text-center">
 
-                        <div className="col-lg-3">
+                    <div className="container">
+                        <div className="row item-space">
+                            <div className = "col">
                             <PatientSelect
-                                 currentManager = {this.state.userID} 
-                                 changeCurrentPatient={this.changeCurrentPatient.bind(this)}
-                                 currentPatient = {this.state.currentPatient}/>
+                                currentManager = {this.state.userID} 
+                                changeCurrentPatient={this.changeCurrentPatient.bind(this)}
+                                currentPatient = {this.state.currentPatient}/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <CreatePatient currentManager = {this.state.userID} changeCurrentPatient={this.changeCurrentPatient.bind(this)}/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <EditPatient currentPatient = {this.state.currentPatient} />
+                            </div>
                         </div>
-                        <div className="col-lg-3 align-self-end">
-                            <CreatePatient currentManager = {this.state.userID} changeCurrentPatient={this.changeCurrentPatient.bind(this)}/>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <EditPatient currentPatient = {this.state.currentPatient} />
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <Invite/>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <Notes/>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <Link to={{
-                                    pathname: "/CreateADL",
-                                    state: {
-                                        currentManager: this.state.userID
-                                    }
-                                }}>
-                                <Button color="secondary" block>Create ADL List</Button>
-                            </Link>
-                        </div>
-                        <div className="col-lg-3 align-self-end">
-                            <ScheduleVisits 
-                                currentManager={this.state.userID}
-                                currentPatient={this.state.currentPatient}/>
-                        </div>
+                    </div>
 
+                    <div className="container">
+                        <div className="row text-center">
+                            <div className="col-lg-3 align-self-end">
+                                <Link to={{
+                                        pathname: "/CreateADL",
+                                        state: {
+                                            currentManager: this.state.userID
+                                        }
+                                    }}>
+                                    <Button color="primary" block>Create ADL List</Button>
+                                </Link>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <ScheduleVisits 
+                                    currentManager={this.state.userID}
+                                    currentPatient={this.state.currentPatient}/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <Invite/>
+                            </div>
+                            <div className="col-lg-3 align-self-end">
+                                <Notes/>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -134,14 +157,34 @@ class CareManagerOfficial extends React.Component {
                         <div className="page-wrapper">
                             <div className="component-wrapper LHS-wrapper">
 
-                                <NewCalendar/>
+                                {/*<DoubleButton/>*/}
+                                <br/>
+                                <NewCalendar
+                                visits={this.state.visits}
+                                currentPatient={this.state.currentPatient}
+                                />              
                                
                             </div>
                             <div className="component-wrapper RHS-wrapper">
+                               
                             </div>
+                        
                         </div>
-
                     </div>
+
+
+                    <div className="container component-wrapper">
+                        {/*THIS DISPLAYS VISITS BY CURRENTLY SELECTED PATIENT */}
+                        <TestDisplayVisits 
+                            currentPatient={this.state.currentPatient}
+                            visits={this.state.visits} />
+                    </div>
+
+                    <div className="container component-wrapper">
+                        {/*THIS DISPLAYS ALL CARE MANAGER VISITS */}
+                        <Timesheet visits={this.state.visits}/>
+                    </div>
+
                 </header>
             </div>
 

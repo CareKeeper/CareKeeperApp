@@ -40,6 +40,7 @@ export default class ScheduleVisits extends React.Component {
         scheduledStartTime: this.state.startTime,  //required to submit, value for testing only
         scheduledFinishTime: this.state.endTime,
 
+        careManager: this.props.currentManager,
         patient: this.props.currentPatient,
         caregiver: this.state.currentCareGiver,
         ADLlist: {
@@ -149,7 +150,7 @@ export default class ScheduleVisits extends React.Component {
       return (
   
           <div>
-          <Button color="secondary"  onClick={this.toggle} block>Schedule Visit</Button>
+          <Button color="primary"  onClick={this.toggle} block>Schedule Visit</Button>
           <Modal isOpen={this.state.modal}>
               <ModalHeader>Schedule Visit for {this.state.patientName}</ModalHeader>
 

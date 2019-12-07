@@ -20,7 +20,6 @@ function OktaToAtlas(email) {
                 res.data.forEach(m => {
                     try {
                         if(m.email.toLowerCase() === email.toLowerCase()) {
-                            console.log("m._id: ", m._id);
                             this.setState({
                                 userID: m._id
                             }, () => console.log("USERID UPDATED: ", this.state.userID));
@@ -55,6 +54,8 @@ class CaregiverOfficial extends React.Component {
     this.state = {
         userinfo: null,
         userID: null,
+        currentPatient: "",
+        visits: null,
       taskArray: [
         {id: 1, checked: false},
         {id: 7, checked: false},
@@ -77,10 +78,24 @@ class CaregiverOfficial extends React.Component {
         //this.checkAuthentication();
     }
 
-  render() {
-    //This will cause the app to crash on clicking any of the buttons
-    //console.log("Current caregiver ID:", this.props.location.state.userID);
+    changeCurrentPatient(_id) {
+      this.setState(
+          {
+              currentPatient: _id
+          });
+    }
 
+    changeCurrentVisits(v) {
+      this.setState(
+          {
+              visits: v
+          },() => console.log("VISITS UPDATED: ", this.state.visits));
+    }
+
+  render() {
+    console.log("Current Okta Caregiver: ", this.state.userinfo);
+    console.log("Current AtlasID: ", this.state.userID);
+    console.log("Current Patient ID: ", this.state.currentPatient);
     return (
       <div className="App">
         {/* Navbar with logo */}
@@ -88,10 +103,12 @@ class CaregiverOfficial extends React.Component {
           <div className="container-fluid">
             <div className="page-wrapper">
               <div className="component-wrapper LHS-wrapper">
-                < PatientDropdown />
+                < PatientDropdown 
+                    currentCaregiver={this.state.userID} 
+                    changeCurrentPatient={this.changeCurrentPatient.bind(this)}
+                    changeCurrentVisits={this.changeCurrentVisits.bind(this)} />
                 < CaregiverLogArea />
                 < RecentLogs />
-                < WorkSched />
               </div>
               <div className="component-wrapper RHS-wrapper">
                 < CaregiverCheckboxArea
@@ -102,6 +119,11 @@ class CaregiverOfficial extends React.Component {
             <div className="page-wrapper">
               <div className="component-wrapper">
                 < Calendar />
+              </div>
+            </div>
+            <div className="page-wrapper">
+              <div className="component-wrapper">
+                < WorkSched visits={this.state.visits}/>
               </div>
             </div>
           </div>

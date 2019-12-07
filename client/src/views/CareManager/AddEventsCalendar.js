@@ -149,7 +149,6 @@ class AddEventsCalendar extends React.Component {
               
               <Form>
                 <FormGroup>
-                  <Label for="InputDate">Deciding Date Format (JSON, Mongoose DATE Schema) This will not submit yet.</Label>
                   <h2><Badge color = "light">Date: {this.props.newDate} </Badge></h2>
                   
                   <br/>

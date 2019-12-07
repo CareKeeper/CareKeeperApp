@@ -1,15 +1,12 @@
 import React from 'react';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
-import axios from 'axios';
 
 function LinkTo(userType) {
     console.log("LinkTo", userType);
-    if(userType.toLowerCase() == "care manager") {
-        window.location = './user'
+    if(userType.toLowerCase() === "care manager") {
+        window.location = './CareManagerOfficial'
     }
-    else if((userType.toLowerCase() == "caregiver") || (userType.toLowerCase() == "care giver")) {
+    else if((userType.toLowerCase() === "caregiver") || (userType.toLowerCase() === "care giver")) {
         window.location = './CaregiverOfficial'
     }
     else {
@@ -44,7 +41,7 @@ class LogInClassification extends React.Component {
     render() {
         return (
             <div>
-                <p>Logging in...</p>
+                <p>Loading...</p>
             </div>
         )
     };

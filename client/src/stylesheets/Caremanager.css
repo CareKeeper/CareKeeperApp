@@ -35,12 +35,27 @@
   width: 100%;
 }
 
+.item-space {
+  margin-bottom: 1%;
+}
+
 .LHS-wrapper {
   width: 35%;
 }
 
 .RHS-wrapper {
   width: 62%;
+}
+
+.test-text {
+  font-size: calc(10px + 1vmin);
+}
+
+.timesheet-table {
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: calc(10px + 1vmin);
+  background-color: white;
 }
 
 #AddNotes {

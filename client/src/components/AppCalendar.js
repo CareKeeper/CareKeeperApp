@@ -36,7 +36,7 @@ class AppCalendar extends Component {
 
   render() {
 
-    const mapEvents = Events.map( item => {
+    const mapEvents = Events.map((item,i) => {
       if (item.date === this.state.newDate) {
         return (
           <div key={this.state.time}>
@@ -47,6 +47,11 @@ class AppCalendar extends Component {
               {item.details}
             </div>
           </div>
+        )
+      }
+      else {
+        return (
+          <span key={i}> </span>
         )
       }
     })

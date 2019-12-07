@@ -9,12 +9,14 @@ export default class Navbar2 extends Component {
       <nav className="navbar navbar-dark bg-dark navbar-expand">
         {/*<Link to="/" className="navbar-brand">NavBar Test</Link>*/}
         <div className="collpase navbar-collapse">
+          <ul className="navbar-nav mr-auto text-right">
+            <li className="navbar-item">
+              <Link to="/LogInClassification" className="nav-link">Home</Link>
+            </li>
+          </ul>
           <ul className="navbar-nav ml-auto text-right">
             <li className="navbar-item nav-link">
               <Home />
-            </li>
-            <li className="navbar-item">
-                <Link to="/user" className="nav-link">Protected Care Manager Welcome Page</Link>
             </li>
           </ul>
         </div>
