@@ -45,10 +45,12 @@ export default class ScheduleVisits extends React.Component {
         caregiver: this.state.currentCareGiver,
         ADLlist: {
           name: this.state.selectedListObject.name,
-          order: this.state.selectedListObject.order
+          order: this.state.selectedListObject.order,
+          result: new Array(this.state.selectedListObject.order.length).fill(false)
         },
         managerNotes: this.state.notes
       }
+      console.log(visit.ADLlist);
 
       axios.post('http://localhost:5000/api/visits/', visit)
         .then(res => {

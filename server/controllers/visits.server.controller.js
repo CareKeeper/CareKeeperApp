@@ -31,7 +31,9 @@ exports.update = function(req, res) {
     visit.scheduledFinish = req.body.scheduledFinish;
     visit.caregiver = req.body.caregiver;
     visit.ADLlist = req.body.ADLlist;
-
+    visit.ADLlist.result = req.body.ADLlist.result;
+    console.log(req.body.ADLlist);
+    console.log(visit.ADLlist);
 
     visit.save(function(err) {
         if(err) {
