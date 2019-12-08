@@ -11,6 +11,7 @@ import EditPatient from './edit-patient.component'
 import ScheduleVisits from './ScheduleVisits';
 import Invite from './Invite'
 import Notes from "./Notes"
+import CSVExport from "../../components/CSVExport";
 //import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
@@ -172,6 +173,10 @@ class CareManagerOfficial extends React.Component {
                         <TestDisplayVisits 
                             currentPatient={this.state.currentPatient}
                             visits={this.state.visits} />
+
+
+
+
                     </div>
 
                     <div className="container component-wrapper">

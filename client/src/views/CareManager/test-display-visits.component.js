@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import CSVExport from "../../components/CSVExport";
 
 
 export default class TestDisplayVisits extends React.Component {
@@ -83,6 +84,13 @@ export default class TestDisplayVisits extends React.Component {
           <div className="test-text">
               <h3 className="text-center">Displaying Visits for {this.state.currentPatientName}</h3>
               {visits}
+
+              <CSVExport JSON={this.state.visitsWithNames.map(function(visit) {
+                  return {
+                      "Caregiver":visit.caregiverName,
+                      "Date":visit.scheduledDate
+                  }
+              })}/>
           </div>
         
       );
