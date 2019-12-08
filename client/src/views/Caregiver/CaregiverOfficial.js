@@ -56,15 +56,7 @@ class CaregiverOfficial extends React.Component {
         userID: null,
         currentPatient: "",
         visits: null,
-      taskArray: [
-        {id: 1, checked: false},
-        {id: 7, checked: false},
-        {id: 3, checked: false},
-        {id: 5, checked: false},
-        {id: 19, checked: false},
-        {id: 35, checked: false},
-        {id: 22, checked: false}
-      ]
+        displayedVisit: null
     };
     this.checkAuthentication = checkAuthentication.bind(this);
     this.OktaToAtlas = OktaToAtlas.bind(this);
@@ -86,10 +78,13 @@ class CaregiverOfficial extends React.Component {
     }
 
     changeCurrentVisits(v) {
-      this.setState(
-          {
-              visits: v
-          },() => console.log("VISITS UPDATED: ", this.state.visits));
+      if (v != null) {
+          this.setState(
+              {
+                  visits: v,
+                  displayedVisit: v[0]
+              }, () => console.log("VISITS UPDATED: ", this.state.visits));
+      }
     }
 
   render() {
@@ -113,7 +108,7 @@ class CaregiverOfficial extends React.Component {
               <div className="component-wrapper RHS-wrapper">
                 < CaregiverCheckboxArea
                   data={data}
-                  taskArray={this.state.taskArray} />
+                  visit={this.state.displayedVisit} />
               </div>
             </div>
             <div className="page-wrapper">

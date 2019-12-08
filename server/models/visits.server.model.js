@@ -8,7 +8,8 @@ var customADLsSchema = new Schema({
 
 var ADLresultsSchema = new Schema({
     name: String,
-    order: [String]
+    order: [String],
+    result: [Boolean]
 });
 
 var visitSchema = new Schema({

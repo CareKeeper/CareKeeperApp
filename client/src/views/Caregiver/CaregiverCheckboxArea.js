@@ -36,7 +36,7 @@ class CaregiverCheckbox extends React.Component {
 
         <TaskList
         data={this.props.data}
-        taskArray={this.props.taskArray} />
+        visit={this.props.visit} />
 
 
           <div className="form-group">
