@@ -50,6 +50,7 @@ export default class ScheduleVisits extends React.Component {
         },
         managerNotes: this.state.notes
       }
+      console.log(visit.ADLlist);
 
       axios.post('http://localhost:5000/api/visits/', visit)
         .then(res => {

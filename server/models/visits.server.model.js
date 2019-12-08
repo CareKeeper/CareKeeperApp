@@ -3,13 +3,13 @@ var mongoose = require('mongoose'),
 
 var customADLsSchema = new Schema({
     name: String,
-    order: [Number]
+    order: [Number],
+    result: [Boolean]
 });
 
 var ADLresultsSchema = new Schema({
     name: String,
     order: [String],
-    result: [Boolean]
 });
 
 var visitSchema = new Schema({
