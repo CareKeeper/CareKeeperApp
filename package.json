@@ -53,5 +53,8 @@
     "react-big-calendar": "^0.23.0",
     "style-loader": "^1.0.0",
     "superagent": "^5.1.0"
+  }, 
+  "engines": {
+    "node": "13.3.0"
   }
 }
