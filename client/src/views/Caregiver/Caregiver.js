@@ -4,7 +4,7 @@ import CaregiverLogArea from './CaregiverLogArea.js';
 import RecentLogs from './RecentLogs.js'
 import WorkSched from './WorkSchedule.js'
 import CaregiverCheckboxArea from './CaregiverCheckboxArea.js';
-import Calendar from '../../components/AppCalendar.js';
+import CalendarArea from './CalendarArea.js';
 import '../../stylesheets/Caregiver.css';
 import data from '../../dataADL';
 
@@ -48,7 +48,7 @@ class Caregiver extends React.Component {
             </div>
             <div className="page-wrapper">
               <div className="component-wrapper">
-                < Calendar />
+
               </div>
             </div>
           </div>

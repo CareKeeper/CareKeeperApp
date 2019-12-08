@@ -7,7 +7,7 @@ import CaregiverLogArea from './CaregiverLogArea.js';
 import RecentLogs from './RecentLogs.js'
 import WorkSched from './WorkSchedule.js'
 import CaregiverCheckboxArea from './CaregiverCheckboxArea.js';
-import Calendar from '../../components/AppCalendar.js';
+import CalendarArea from './CalendarArea.js'
 import '../../stylesheets/Caregiver.css';
 import data from '../../dataADL';
 
@@ -98,8 +98,8 @@ class CaregiverOfficial extends React.Component {
           <div className="container-fluid">
             <div className="page-wrapper">
               <div className="component-wrapper LHS-wrapper">
-                < PatientDropdown 
-                    currentCaregiver={this.state.userID} 
+                < PatientDropdown
+                    currentCaregiver={this.state.userID}
                     changeCurrentPatient={this.changeCurrentPatient.bind(this)}
                     changeCurrentVisits={this.changeCurrentVisits.bind(this)} />
                 < CaregiverLogArea />
@@ -113,7 +113,7 @@ class CaregiverOfficial extends React.Component {
             </div>
             <div className="page-wrapper">
               <div className="component-wrapper">
-                < Calendar />
+                < CalendarArea visits={this.state.visits}/>
               </div>
             </div>
             <div className="page-wrapper">
