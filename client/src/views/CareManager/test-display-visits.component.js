@@ -30,6 +30,11 @@ export default class TestDisplayVisits extends React.Component {
         })
     }
 
+    changeDisplayedVisit(v) {
+        this.props.changeDisplayedVisit(v);
+
+    }
+
     getNames(patsOnly) {
         let newList = patsOnly;
         
@@ -68,11 +73,13 @@ export default class TestDisplayVisits extends React.Component {
             if(this.state.visitsWithNames.length > 0) {
                 visits = this.state.visitsWithNames.map((v,i) => {
                     return (
-                        <ol key={i}>
+                        <div><ol key={i}>
                             <li className="text-left">Caregiver: {v.caregiverName}</li>
                             <li className="text-left">Scheduled Date: {v.scheduledDate}</li>
                             <li className="text-left">Notes: {v.managerNotes}</li>
                         </ol>
+                        <button onClick={this.changeDisplayedVisit.bind(this, v)}>Show ADL List</button>
+                        <br /></div>
                     )
                 })
             }

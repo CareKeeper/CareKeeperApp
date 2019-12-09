@@ -16,6 +16,8 @@ import CSVExport from "../../components/CSVExport";
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
 import Timesheet from './Timesheet';
+import CaregiverCheckboxArea from "../Caregiver/CaregiverCheckboxArea";
+import data from "../../dataADL";
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -63,7 +65,8 @@ class CareManagerOfficial extends React.Component {
             userinfo: null,
             userID: null,
             visits: null,
-            currentPatient: ""
+            currentPatient: "",
+            displayedVisit: null
         }
         this.checkAuthentication = checkAuthentication.bind(this);
         this.OktaToAtlas = OktaToAtlas.bind(this);
@@ -75,6 +78,12 @@ class CareManagerOfficial extends React.Component {
     
     async componentDidUpdate() {
         
+    }
+
+    changeDisplayedVisit(v) {
+        this.setState(
+            {displayedVisit: v}
+        )
     }
 
     getVisits() {
@@ -167,7 +176,9 @@ class CareManagerOfficial extends React.Component {
                                
                             </div>
                             <div className="component-wrapper RHS-wrapper">
-                               
+                                < CaregiverCheckboxArea
+                                    data={data}
+                                    visit={this.state.displayedVisit} />
                             </div>
                         
                         </div>
@@ -178,7 +189,8 @@ class CareManagerOfficial extends React.Component {
                         {/*THIS DISPLAYS VISITS BY CURRENTLY SELECTED PATIENT */}
                         <TestDisplayVisits 
                             currentPatient={this.state.currentPatient}
-                            visits={this.state.visits} />
+                            visits={this.state.visits}
+                            changeDisplayedVisit={this.changeDisplayedVisit.bind(this)}/>
 
 
 

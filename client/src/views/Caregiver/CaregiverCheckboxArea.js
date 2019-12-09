@@ -30,7 +30,7 @@ class CaregiverCheckbox extends React.Component {
 
   render() {
     if (this.props.visit == null)
-      return("No Visits Today");
+      return("No Visit Displayed");
     return (
       <div align="left">
         <h2>Visit Details:</h2>
