@@ -75,9 +75,9 @@ class CareManagerOfficial extends React.Component {
     async componentDidMount() {
         this.checkAuthentication();
     }
-    
+
     async componentDidUpdate() {
-        
+
     }
 
     changeDisplayedVisit(v) {
@@ -123,7 +123,7 @@ class CareManagerOfficial extends React.Component {
                         <div className="row item-space">
                             <div className = "col">
                             <PatientSelect
-                                currentManager = {this.state.userID} 
+                                currentManager = {this.state.userID}
                                 changeCurrentPatient={this.changeCurrentPatient.bind(this)}
                                 currentPatient = {this.state.currentPatient}/>
                             </div>
@@ -149,7 +149,7 @@ class CareManagerOfficial extends React.Component {
                                 </Link>
                             </div>
                             <div className="col-lg-3 align-self-end">
-                                <ScheduleVisits 
+                                <ScheduleVisits
                                     currentManager={this.state.userID}
                                     currentPatient={this.state.currentPatient}/>
                             </div>
@@ -172,22 +172,23 @@ class CareManagerOfficial extends React.Component {
                                 <NewCalendar
                                 visits={this.state.visits}
                                 currentPatient={this.state.currentPatient}
-                                />              
-                               
+                                changeDisplayedVisit={this.changeDisplayedVisit}
+                                />
+
                             </div>
                             <div className="component-wrapper RHS-wrapper">
                                 < CaregiverCheckboxArea
                                     data={data}
                                     visit={this.state.displayedVisit} />
                             </div>
-                        
+
                         </div>
                     </div>
 
 
                     <div className="container component-wrapper">
                         {/*THIS DISPLAYS VISITS BY CURRENTLY SELECTED PATIENT */}
-                        <TestDisplayVisits 
+                        <TestDisplayVisits
                             currentPatient={this.state.currentPatient}
                             visits={this.state.visits}
                             changeDisplayedVisit={this.changeDisplayedVisit.bind(this)}/>
