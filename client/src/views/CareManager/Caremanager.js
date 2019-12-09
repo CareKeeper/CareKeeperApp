@@ -5,7 +5,7 @@ import EditPatient from './edit-patient.component'
 import Invite from './Invite'
 import Notes from "./Notes"
 import ScheduleVisits from './ScheduleVisits';
-import DoubleButton from '../../components/googleCalendar';
+//import DoubleButton from '../../components/googleCalendar';
 import NewCalendar from './NewCalendar';
 import '../../stylesheets/Caremanager.css';
 import { Button } from 'reactstrap';
@@ -76,8 +76,7 @@ class Caremanager extends React.Component {
                         <div className="page-wrapper">
                             <div className="component-wrapper LHS-wrapper">
 
-                                <DoubleButton/>
-                                <br/>
+                                
                                 <NewCalendar/>
                             </div>
                             <div className="component-wrapper RHS-wrapper">
