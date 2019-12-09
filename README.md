@@ -1,5 +1,6 @@
 ## Getting Started
-This repository is for the carekeeper application made for Jayme Hickman Lindsey. This application is a platform where caremanagers, individuals managing the care of another person,and caregivers can log, maintain communication on the status of the patient. 
+
+This repository is for the carekeeper application made for Jayme Hickman Lindsey. Application that helps families manages the care of a loved one with Alzheimer’s or Dementia. The web app will help facilitate communication between paid caregivers and care managers. Our goal is to have it be able to track activities of daily living, medications, doctor appointments, and caregiver schedule.
 
 #### _**DEPLOYED SITE**_ -
 [Carekeeper link](https://carekeeper.herokuapp.com/)
@@ -54,8 +55,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The following API's were used in the project: 
 
-    - Okta Authentication API 
-    - Google Calendar API
+    Okta Authentication API 
+    Google Calendar API
+    React-Calendar
 
 ## Available Scripts
 
