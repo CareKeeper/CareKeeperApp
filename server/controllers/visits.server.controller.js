@@ -33,6 +33,8 @@ exports.update = function(req, res) {
     visit.ADLlist = req.body.ADLlist;
     visit.ADLlist.result = req.body.ADLlist.result;
     visit.caregiverNotes = req.body.caregiverNotes;
+    visit.actualStart = req.body.actualStart;
+    visit.actualFinish = req.body.actualFinish;
 
     visit.save(function(err) {
         if(err) {

@@ -27,8 +27,8 @@ var visitSchema = new Schema({
     managerNotes: String,
 
     //Live Updates from Caregiver
-    actualStart: {type: Date},
-    actualFinish: {type: Date},
+    actualStart: {type: String},
+    actualFinish: {type: String},
     ADLresults: {type: ADLresultsSchema},
     caregiverNotes: String,
 

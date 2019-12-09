@@ -126,7 +126,8 @@ class CaregiverOfficial extends React.Component {
                     currentCaregiver={this.state.userID}
                     changeCurrentPatient={this.changeCurrentPatient.bind(this)}
                     changeCurrentVisits={this.changeCurrentVisits.bind(this)} />
-                < CaregiverLogArea />
+                < CaregiverLogArea
+                    visit={this.state.displayedVisit} />
                 < RecentLogs />
               </div>
               <div className="component-wrapper RHS-wrapper">
