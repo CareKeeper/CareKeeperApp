@@ -23,15 +23,11 @@ Once this is done the application can be run locally with the command `npm run-s
 
 This application has 6 features:
 
-<<<<<<< HEAD
 ![Caregiver Landing Page](Screenshots/Caregiver_page.png)
 
 ![Care Manager Landing Page](Screenshots/CareManager_page.png)
 
-*React Calendar* - The application allows the caremanager and the caregiver the ability to add a patient's appointment to the Caremanager's corresponding calendar. 
-=======
-*React Calendar* - The application allows the caremanager and the caregiver the ability to add a patient's appointment to the Caremanager's corresponding calendar.
->>>>>>> 3988cd0518694159882a9fc4aeef7fe404ac5714
+*React Calendar* - The application allows the care manager and the caregiver the ability to add a patient's appointment to the Care manager's corresponding calendar. 
 
 *Login* - Caremanagers and caregivers have their own credentials that will redirect them to their personalized caregiver/caremanager page. Caremanagers and caregivers must be invited directly by the application manager from the Okta organization page.
 
