@@ -70,7 +70,7 @@ class CalendarArea extends React.Component {
                   <li>Notes: {v.managerNotes}</li>
                   <li>ADL List Order: {v.ADLlist.order.map(n => n + " ")}</li>
                 </ul>
-                <button onClick={this.changeDisplayedVisit.bind(this, v)}>Show ADL List</button>
+                //<button onClick={this.changeDisplayedVisit.bind(this, v)}>Show ADL List</button>
               <br />
               </div>
             )
