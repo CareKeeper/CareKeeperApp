@@ -165,14 +165,7 @@ export default class ScheduleVisits extends React.Component {
                 
                 <Form>
                   <FormGroup>
-                    <Label for="InputDate">Deciding Date Format (JSON, Mongoose DATE Schema) This will not submit yet.</Label>
-                    <Input
-                      type="date"
-                      id="InputDate"
-                      value={this.state.date}
-                      placeholder="date placeholder"
-                    />
-                    <Label for="Just Date">Just Date (Will Submit)</Label>
+                    <Label for="Just Date">Date</Label>
                     <Input
                       type="date"
                       id="Just Date"
