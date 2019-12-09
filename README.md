@@ -4,7 +4,7 @@ This repository is for the carekeeper application made for Jayme Hickman Lindsey
 #### _**DEPLOYED SITE**_ -
 [Carekeeper link](https://carekeeper.herokuapp.com/)
 
-#### _**RUNNING THE WEBSITE**_ -**_ -
+#### _**RUNNING THE WEBSITE**_ -
 
 *Heroku:* 
 
@@ -54,7 +54,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The following API's were used in the project: 
 
-    - Okta Authentication 
+    - Okta Authentication API 
     - Google Calendar API
 
 ## Available Scripts
