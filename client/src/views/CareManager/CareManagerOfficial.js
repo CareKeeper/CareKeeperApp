@@ -163,26 +163,14 @@ class CareManagerOfficial extends React.Component {
                     </div>
 
 
-                    <div className="container-fluid">
-                        <div className="page-wrapper">
-                            <div className="component-wrapper LHS-wrapper">
-
-                                {/*<DoubleButton/>*/}
-                                <br/>
-                                <NewCalendar
-                                visits={this.state.visits}
-                                currentPatient={this.state.currentPatient}
-                                changeDisplayedVisit={this.changeDisplayedVisit}
-                                />
-
-                            </div>
-                            <div className="component-wrapper RHS-wrapper">
-                                < CaregiverCheckboxArea
-                                    data={data}
-                                    visit={this.state.displayedVisit} />
-                            </div>
-
-                        </div>
+                    <div className="container component-wrapper">
+                        {/*<DoubleButton/>*/}
+                        <br/>
+                        <NewCalendar
+                        visits={this.state.visits}
+                        currentPatient={this.state.currentPatient}
+                        changeDisplayedVisit={this.changeDisplayedVisit}
+                        />
                     </div>
 
 
@@ -192,10 +180,6 @@ class CareManagerOfficial extends React.Component {
                             currentPatient={this.state.currentPatient}
                             visits={this.state.visits}
                             changeDisplayedVisit={this.changeDisplayedVisit.bind(this)}/>
-
-
-
-
                     </div>
 
                     <div className="container component-wrapper">
@@ -212,3 +196,12 @@ class CareManagerOfficial extends React.Component {
 }
 
 export default withAuth(CareManagerOfficial);
+
+{/* Took this out:
+  <div className="component-wrapper RHS-wrapper">
+      < CaregiverCheckboxArea
+          data={data}
+          visit={this.state.displayedVisit} />
+  </div>
+
+  */}

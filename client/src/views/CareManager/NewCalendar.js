@@ -167,42 +167,32 @@ class NewCalendar extends React.Component {
         marginRight: '2em'
       }
 
+      const visitStyle = {
+        fontSize: '15px',
+      }
+
     return (
 
-      <div>
-        <div style={divStyle}>
-        <Calendar
-          onChange={this.onChange}
-          value={this.state.date}
-          onClickDay = {this.toggle}
-        />
-
-        </div>
-
-        <AddEventsCalendar newDate={this.state.newDate}/>
+          <div>
+            <div style={divStyle}>
+              <Calendar
+                onChange={this.onChange}
+                value={this.state.date}
+              />
+            </div>
 
 
-        {val === true &&
-        <Modal isOpen={this.state.modal}>
-            <ModalHeader style= {{color: '#ee8422'}}>Schedule for {this.state.currentPatientName}</ModalHeader>
-
-            <ModalBody>
-              {visits}
-            </ModalBody>
-
-            <ModalFooter>
-
-               <Button style={{background: '#606161'}} onClick={this.toggle}>Close</Button>
-
-            </ModalFooter>
-        </Modal>
-      }
+            <div>
+              <h6>Visits:</h6>
+              <div style={visitStyle}>
+                {visits}
+              </div>
+            </div>
 
 
       </div>
       );
-
-
+    }
 }
-}
-  export default NewCalendar
+
+export default NewCalendar;
