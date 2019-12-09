@@ -79,18 +79,29 @@ class CaregiverOfficial extends React.Component {
 
     changeCurrentVisits(v) {
       if (v != null) {
+          const date = new Date();
+          let yy = date.getFullYear();
+          let mm = date.getMonth() + 1;
+          let dd = date.getDate();
+          if (dd < 10) {
+              dd = '0' + dd;
+          }
+
+          let concatDate = yy + '-' + mm + '-' + dd;
+          const todaysvisits = v.filter(visit => {
+              return visit.scheduledDate === concatDate;
+                  });
+
+
           this.setState(
               {
                   visits: v,
-                  displayedVisit: v[0]
+                  displayedVisit: todaysvisits[0]
               }, () => console.log("VISITS UPDATED: ", this.state.visits));
       }
     }
 
   render() {
-    console.log("Current Okta Caregiver: ", this.state.userinfo);
-    console.log("Current AtlasID: ", this.state.userID);
-    console.log("Current Patient ID: ", this.state.currentPatient);
     return (
       <div className="App">
         {/* Navbar with logo */}
