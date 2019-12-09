@@ -1,6 +1,6 @@
 import React from 'react'
 import AddEventsCalendar from './AddEventsCalendar';
-import Calendar from 'react-calendar/dist/entry.nostyle';
+import Calendar from 'react-calendar';
 import Events from '../../calendarEvents';
 import { bool } from 'prop-types';
 import axios from "axios";
@@ -20,7 +20,7 @@ class NewCalendar extends React.Component {
       let hh = today.getHours();
       let min = today.getMinutes();
       let wholeTime = hh + ':' + min;
-  
+
       this.state = {
         date: new Date(),
         newyy : yy,
@@ -48,7 +48,7 @@ class NewCalendar extends React.Component {
      console.log(this.onClick)
 
     }
-    
+
 
     toggle() {
       this.setState({
@@ -70,7 +70,7 @@ class NewCalendar extends React.Component {
 
     getNames(patsOnly) {
       let newList = patsOnly;
-      
+
       patsOnly.forEach((v,i,arr) => {
           //get patient name
           axios.get('http://localhost:5000/api/patients/' + v.patient)
@@ -104,9 +104,12 @@ class NewCalendar extends React.Component {
           }
       })
   }
-  
-  
-  
+
+  changeDisplayedVisit(v) {
+    this.props.changeDisplayedVisit(v);
+  }
+
+
     render() {
 
       console.log(this.state.clicked)
@@ -118,7 +121,7 @@ class NewCalendar extends React.Component {
           val = this.state.clicked
           tempDate = this.state.newDate
           return(
-            <div key = {i}>         
+            <div key = {i}>
             {item.scheduledDate}
             </div>
           )
@@ -148,8 +151,8 @@ class NewCalendar extends React.Component {
                         </ol>
                         </ListGroup>
                       </div>
-                    </div>  
-                    
+                    </div>
+
                   )
                 }
               })
@@ -157,45 +160,39 @@ class NewCalendar extends React.Component {
           else visits = "No Visits to Display.";
       }
 
-      console.log(val)
+      console.log(val);
+
+      const divStyle = {
+        float: 'left',
+        marginRight: '2em'
+      }
+
+      const visitStyle = {
+        fontSize: '15px',
+      }
 
     return (
-      
-      <div className="row">
-      <div className="col-md-6">
-        <Calendar
-          onChange={this.onChange}
-          value={this.state.date}
-          onClickDay = {this.toggle}
-        />
-      </div>  
-     
-      <div className= "col-md-6">
-        <AddEventsCalendar newDate={this.state.newDate}/>  
-           
-        
-        {val === true &&
-        <Modal isOpen={this.state.modal}>
-            <ModalHeader style= {{color: '#ee8422'}}>Schedule for {this.state.currentPatientName}</ModalHeader>
 
-            <ModalBody>  
-              {visits}   
-            </ModalBody>
+          <div>
+            <div style={divStyle}>
+              <Calendar
+                onChange={this.onChange}
+                value={this.state.date}
+              />
+            </div>
 
-            <ModalFooter>
 
-               <Button style={{background: '#606161'}} onClick={this.toggle}>Close</Button>
+            <div>
+              <h6>Visits:</h6>
+              <div style={visitStyle}>
+                {visits}
+              </div>
+            </div>
 
-            </ModalFooter>
-        </Modal>  
-      }    
-        </div>
-        
-        
+
       </div>
       );
-   
- 
+    }
 }
-}
-  export default NewCalendar
+
+export default NewCalendar;
