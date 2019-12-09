@@ -45,14 +45,14 @@ const App = () => {
 
               {/*Secure Pages*/}
               <SecureRoute path="/CareManagerOfficial" component={CareManagerOfficial} />
-                  <SecureRoute path="/CreateADL" component={CreateADL} />
+              <SecureRoute path="/CreateADL" component={CreateADL} />
               <SecureRoute path="/CaregiverOfficial" component={CaregiverOfficial} />
 
               {/*Test Pages*/}
               <SecureRoute exact path="/user" component={TestUser} />
               <Route exact path="/Demo1Home" component={Demo1Home} />
               <Route exact path="/CareManager" component={Caremanager} />
-                  <Route exact path="/create_ADL" component={CreateADL} />
+              <Route exact path="/create_ADL" component={CreateADL} />
               <Route exact path="/Caregiver" component={CaregiverPage} />
 
               {/*Other*/}
