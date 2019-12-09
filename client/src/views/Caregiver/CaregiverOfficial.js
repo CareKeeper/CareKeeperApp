@@ -71,35 +71,42 @@ class CaregiverOfficial extends React.Component {
     }
 
     changeCurrentPatient(_id) {
-      this.setState(
-          {
-              currentPatient: _id
-          });
+        console.log(_id);
+        this.setState(
+            {
+                currentPatient: _id
+            });
+
+        if (this.state.visits != null) {
+            const date = new Date();
+            let yy = date.getFullYear();
+            let mm = date.getMonth() + 1;
+            let dd = date.getDate();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            let concatDate = yy + '-' + mm + '-' + dd;
+            var todaysvisits = this.state.visits.filter(visit => {
+                return visit.patient === _id && visit.scheduledDate === concatDate;
+            });
+
+            this.setState(
+                {displayedVisit: todaysvisits[0]}
+            )
+        }
+        ;
     }
 
     changeCurrentVisits(v) {
-      if (v != null) {
-          const date = new Date();
-          let yy = date.getFullYear();
-          let mm = date.getMonth() + 1;
-          let dd = date.getDate();
-          if (dd < 10) {
-              dd = '0' + dd;
-          }
-
-          let concatDate = yy + '-' + mm + '-' + dd;
-          const todaysvisits = v.filter(visit => {
-              return visit.scheduledDate === concatDate;
-                  });
-
 
           this.setState(
               {
-                  visits: v,
-                  displayedVisit: todaysvisits[0]
+                  visits: v
+
               }, () => console.log("VISITS UPDATED: ", this.state.visits));
       }
-    }
+
 
   render() {
     return (
