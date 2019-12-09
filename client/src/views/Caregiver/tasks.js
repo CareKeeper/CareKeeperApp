@@ -17,14 +17,12 @@ class TaskList extends React.Component {
 
     var visit = this.props.visit;
     visit.ADLlist.result = results;
-    console.log(visit.ADLlist);
     axios.put('http://localhost:5000/api/visits/' + this.props.visit._id,visit);
+    this.forceUpdate();
 
   }
 
   render() {
-    if (this.props.visit == null)
-      return("");
 
     const tasks = this.props.visit.ADLlist.order;
     let results = this.props.visit.ADLlist.result;
@@ -35,8 +33,8 @@ class TaskList extends React.Component {
     const tasksMap = tasks.map ((number, i) => {
       const task = data[number].task;
       return (
-        <div key={number} className="form=group">
-          <label className="checkbox">
+        <div key={number} className="form=group" align="left">
+            <label className="checkbox">
             <input
               name={i}
               type="checkbox"
@@ -50,7 +48,9 @@ class TaskList extends React.Component {
     })
 
     return(
-      <div>{tasksMap}</div>
+      <div><br />
+          <h4>Task List:</h4>
+          {tasksMap}</div>
     )
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import CSVExport from "../../components/CSVExport";
 
 
 export default class Timesheet extends React.Component {
@@ -63,7 +64,7 @@ export default class Timesheet extends React.Component {
                             <td>{v.patientName}</td>
                             <td>{v.scheduledDate}</td>
                             <td>{v.scheduledStartTime} - {v.scheduledFinishTime}</td>
-                            <td>-</td>
+                            <td>{v.actualStart} - {v.actualFinish}</td>
                             <td>-</td>
                         </tr>
                     )
@@ -93,6 +94,17 @@ export default class Timesheet extends React.Component {
                     </tbody>
                 </table>
             </div>
+            <CSVExport JSON={this.state.visitsWithNames.map(function(visit) {
+                return {
+                    "Caregiver":visit.caregiverName,
+                    "Patient":visit.patientName,
+                    "Date":visit.scheduledDate,
+                    "Scheduled Start":visit.scheduledStartTime,
+                    "Scheduled Finish":visit.scheduledFinishTime,
+                    "Actual Start":visit.actualStart,
+                    "Actual Finish":visit.actualFinish
+                }
+            })}/>
         </div>
         
       );

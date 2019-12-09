@@ -71,26 +71,50 @@ class CaregiverOfficial extends React.Component {
     }
 
     changeCurrentPatient(_id) {
-      this.setState(
-          {
-              currentPatient: _id
-          });
+        console.log(_id);
+        this.setState(
+            {
+                currentPatient: _id
+            });
+
+        if (this.state.visits != null) {
+            const date = new Date();
+            let yy = date.getFullYear();
+            let mm = date.getMonth() + 1;
+            let dd = date.getDate();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            let concatDate = yy + '-' + mm + '-' + dd;
+            var todaysvisits = this.state.visits.filter(visit => {
+                return visit.patient === _id && visit.scheduledDate === concatDate;
+            });
+
+            this.setState(
+                {displayedVisit: todaysvisits[0]}
+            )
+        }
+
+    }
+
+    changeDisplayedVisit(v) {
+        this.setState(
+            {displayedVisit: v}
+        )
     }
 
     changeCurrentVisits(v) {
-      if (v != null) {
+
           this.setState(
               {
-                  visits: v,
-                  displayedVisit: v[0]
+                  visits: v
+
               }, () => console.log("VISITS UPDATED: ", this.state.visits));
       }
-    }
+
 
   render() {
-    console.log("Current Okta Caregiver: ", this.state.userinfo);
-    console.log("Current AtlasID: ", this.state.userID);
-    console.log("Current Patient ID: ", this.state.currentPatient);
     return (
       <div className="App">
         {/* Navbar with logo */}
@@ -102,7 +126,8 @@ class CaregiverOfficial extends React.Component {
                     currentCaregiver={this.state.userID}
                     changeCurrentPatient={this.changeCurrentPatient.bind(this)}
                     changeCurrentVisits={this.changeCurrentVisits.bind(this)} />
-                < CaregiverLogArea />
+                < CaregiverLogArea
+                    visit={this.state.displayedVisit} />
                 < RecentLogs />
               </div>
               <div className="component-wrapper RHS-wrapper">
@@ -113,7 +138,8 @@ class CaregiverOfficial extends React.Component {
             </div>
             <div className="page-wrapper">
               <div className="component-wrapper">
-                < CalendarArea visits={this.state.visits}/>
+                < CalendarArea visits={this.state.visits}
+                changeDisplayedVisit={this.changeDisplayedVisit.bind(this)}/>
               </div>
             </div>
             <div className="page-wrapper">

@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskList from './tasks.js';
+import axios from "axios";
 
 class CaregiverCheckbox extends React.Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class CaregiverCheckbox extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -18,20 +18,24 @@ class CaregiverCheckbox extends React.Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
+    let visit = this.props.visit;
+    visit.caregiverNotes = value;
+    axios.put('http://localhost:5000/api/visits/' + this.props.visit._id,visit);
+
     this.setState({
       [name]: value
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state);
-  }
-
 
   render() {
+    if (this.props.visit == null)
+      return("No Visit Displayed");
     return (
-      <div>
+      <div align="left">
+        <h2>Visit Details:</h2>
+        <h4>Manager's Notes:</h4>
+        <div align="left">{this.props.visit.managerNotes}</div>
         <form className="form" onSubmit={this.handleSubmit}>
 
         <TaskList
@@ -40,24 +44,18 @@ class CaregiverCheckbox extends React.Component {
 
 
           <div className="form-group">
-            <div>
-              <label className="label">Additional Notes</label>
+            <div><br />
+              <h4>Caregiver Notes:</h4>
             </div>
             <div>
               <textarea
                 className="textarea"
                 name="message"
-                value={this.state.message}
+                value={this.props.visit.caregiverNotes == null ? "" : this.props.visit.caregiverNotes}
                 onChange={this.handleChange}
               />
               </div>
             </div>
-
-            <input
-              type="submit"
-              value="Submit"
-              className="button is-primary"
-            />
 
           </form>
         </div>

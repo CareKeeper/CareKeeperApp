@@ -16,6 +16,8 @@ import CSVExport from "../../components/CSVExport";
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
 import Timesheet from './Timesheet';
+import CaregiverCheckboxArea from "../Caregiver/CaregiverCheckboxArea";
+import data from "../../dataADL";
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -63,7 +65,8 @@ class CareManagerOfficial extends React.Component {
             userinfo: null,
             userID: null,
             visits: null,
-            currentPatient: ""
+            currentPatient: "",
+            displayedVisit: null
         }
         this.checkAuthentication = checkAuthentication.bind(this);
         this.OktaToAtlas = OktaToAtlas.bind(this);
@@ -72,9 +75,15 @@ class CareManagerOfficial extends React.Component {
     async componentDidMount() {
         this.checkAuthentication();
     }
-    
+
     async componentDidUpdate() {
-        
+
+    }
+
+    changeDisplayedVisit(v) {
+        this.setState(
+            {displayedVisit: v}
+        )
     }
 
     getVisits() {
@@ -114,7 +123,7 @@ class CareManagerOfficial extends React.Component {
                         <div className="row item-space">
                             <div className = "col">
                             <PatientSelect
-                                currentManager = {this.state.userID} 
+                                currentManager = {this.state.userID}
                                 changeCurrentPatient={this.changeCurrentPatient.bind(this)}
                                 currentPatient = {this.state.currentPatient}/>
                             </div>
@@ -140,7 +149,7 @@ class CareManagerOfficial extends React.Component {
                                 </Link>
                             </div>
                             <div className="col-lg-3 align-self-end">
-                                <ScheduleVisits 
+                                <ScheduleVisits
                                     currentManager={this.state.userID}
                                     currentPatient={this.state.currentPatient}/>
                             </div>
@@ -154,29 +163,22 @@ class CareManagerOfficial extends React.Component {
                     </div>
 
 
-                    <div className="container-fluid">
-                        <div className="page-wrapper">
-                            <div className="component-wrapper LHS-wrapper">
-
-                                {/*<DoubleButton/>*/}
-                                <br/>
-                                <NewCalendar/>
-                            </div>
-                            <div className="component-wrapper RHS-wrapper">
-                            </div>
-                        </div>
+                    <div className="container component-wrapper">
+                        <br/>
+                        <NewCalendar
+                        visits={this.state.visits}
+                        currentPatient={this.state.currentPatient}
+                        changeDisplayedVisit={this.changeDisplayedVisit}
+                        />
                     </div>
 
 
                     <div className="container component-wrapper">
                         {/*THIS DISPLAYS VISITS BY CURRENTLY SELECTED PATIENT */}
-                        <TestDisplayVisits 
+                        <TestDisplayVisits
                             currentPatient={this.state.currentPatient}
-                            visits={this.state.visits} />
-
-
-
-
+                            visits={this.state.visits}
+                            changeDisplayedVisit={this.changeDisplayedVisit.bind(this)}/>
                     </div>
 
                     <div className="container component-wrapper">

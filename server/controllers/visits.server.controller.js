@@ -32,8 +32,9 @@ exports.update = function(req, res) {
     visit.caregiver = req.body.caregiver;
     visit.ADLlist = req.body.ADLlist;
     visit.ADLlist.result = req.body.ADLlist.result;
-    console.log(req.body.ADLlist);
-    console.log(visit.ADLlist);
+    visit.caregiverNotes = req.body.caregiverNotes;
+    visit.actualStart = req.body.actualStart;
+    visit.actualFinish = req.body.actualFinish;
 
     visit.save(function(err) {
         if(err) {

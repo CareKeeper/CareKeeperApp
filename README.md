@@ -23,7 +23,7 @@ Once this is done the application can be run locally with the command `npm run-s
 
 This application has 6 features:
 
-*Google Calendar* - The application is connected to the google calendar api allowing the caremanager and the caregiver to add a patient's appointment to the Caremanager's corresponding calendar. 
+*React Calendar* - The application allows the caremanager and the caregiver the ability to add a patient's appointment to the Caremanager's corresponding calendar. 
 
 *Login* - Caremanagers and caregivers have their own credentials that will redirect them to their personalized caregiver/caremanager page. Caremanagers and caregivers must be invited directly by the applicaiton manager from the Okta organization page. 
 
@@ -56,8 +56,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 The following API's were used in the project: 
 
     Okta Authentication API 
-    Google Calendar API
-    React-Calendar
+    React-Calendar 
 
 ## Available Scripts
 
