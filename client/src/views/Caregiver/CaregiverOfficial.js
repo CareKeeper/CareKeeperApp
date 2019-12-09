@@ -95,7 +95,13 @@ class CaregiverOfficial extends React.Component {
                 {displayedVisit: todaysvisits[0]}
             )
         }
-        ;
+
+    }
+
+    changeDisplayedVisit(v) {
+        this.setState(
+            {displayedVisit: v}
+        )
     }
 
     changeCurrentVisits(v) {
@@ -131,7 +137,8 @@ class CaregiverOfficial extends React.Component {
             </div>
             <div className="page-wrapper">
               <div className="component-wrapper">
-                < CalendarArea visits={this.state.visits}/>
+                < CalendarArea visits={this.state.visits}
+                changeDisplayedVisit={this.changeDisplayedVisit.bind(this)}/>
               </div>
             </div>
             <div className="page-wrapper">

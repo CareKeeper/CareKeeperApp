@@ -33,7 +33,7 @@ class CaregiverCheckbox extends React.Component {
       return("No Visits Today");
     return (
       <div align="left">
-        <h2>Today's Visit</h2>
+        <h2>Visit Details:</h2>
         <h4>Manager's Notes:</h4>
         <div align="left">{this.props.visit.managerNotes}</div>
         <form className="form" onSubmit={this.handleSubmit}>
@@ -51,7 +51,7 @@ class CaregiverCheckbox extends React.Component {
               <textarea
                 className="textarea"
                 name="message"
-                value={this.props.visit.caregiverNotes}
+                value={this.props.visit.caregiverNotes == null ? "" : this.props.visit.caregiverNotes}
                 onChange={this.handleChange}
               />
               </div>
