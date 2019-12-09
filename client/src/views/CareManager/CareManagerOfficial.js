@@ -164,7 +164,6 @@ class CareManagerOfficial extends React.Component {
 
 
                     <div className="container component-wrapper">
-                        {/*<DoubleButton/>*/}
                         <br/>
                         <NewCalendar
                         visits={this.state.visits}
@@ -196,12 +195,3 @@ class CareManagerOfficial extends React.Component {
 }
 
 export default withAuth(CareManagerOfficial);
-
-{/* Took this out:
-  <div className="component-wrapper RHS-wrapper">
-      < CaregiverCheckboxArea
-          data={data}
-          visit={this.state.displayedVisit} />
-  </div>
-
-  */}

@@ -80,6 +80,13 @@ app.get('/api/messages', authenticationRequired, (req, res) => {
 */
 
 // Use env port or default
-const port = process.env.PORT || 5000;
+let port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server now running on port ${port}!`));
+// app.listen(port, () => console.log(`Server now running on port ${port}!`));
+
+//port requirments for heroku
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 8000;
+// }
+app.listen(port);

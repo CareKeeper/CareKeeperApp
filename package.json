@@ -9,7 +9,7 @@
     "client": "cd client && npm start",
     "server": "nodemon server/server.js",
     "dev": "concurrently \"nodemon server/server.js\" \"cd client && npm run start\"",
-    "build": "cd client && npm build",
+    "build": "cd client && npm install",
     "start": "node server/server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
@@ -34,6 +34,7 @@
     "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
+    "node": "^13.3.0",
     "nodemon": "^1.18.10",
     "okta": "^1.0.0",
     "popper": "^1.0.1",
@@ -45,6 +46,7 @@
     "react-dom": "^16.11.0",
     "react-google-calendar-api": "^1.0.11",
     "react-native-calendars": "^1.212.0",
+    "react-router-dom": "^5.1.2",
     "reactstrap": "^8.1.1",
     "should": "^13.2.3",
     "supertest": "^4.0.2"
@@ -56,5 +58,8 @@
     "react-big-calendar": "^0.23.0",
     "style-loader": "^1.0.0",
     "superagent": "^5.1.0"
+  },
+  "engines": {
+    "node": "13.3.0"
   }
 }
