@@ -160,16 +160,10 @@ class CareManagerOfficial extends React.Component {
 
                                 {/*<DoubleButton/>*/}
                                 <br/>
-                                <NewCalendar
-                                visits={this.state.visits}
-                                currentPatient={this.state.currentPatient}
-                                />              
-                               
+                                <NewCalendar/>
                             </div>
                             <div className="component-wrapper RHS-wrapper">
-                               
                             </div>
-                        
                         </div>
                     </div>
 
