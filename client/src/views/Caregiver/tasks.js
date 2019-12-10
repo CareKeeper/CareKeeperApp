@@ -34,15 +34,16 @@ class TaskList extends React.Component {
       const task = data[number].task;
       return (
         <div key={number} className="form=group" align="left">
-            <label className="checkbox">
+          <h4><label className="checkbox">
             <input
               name={i}
               type="checkbox"
               onChange={this.handleChange}
               checked={results[i]}
+
             />
             {task}
-          </label>
+          </label></h4>
         </div>
       )
     })

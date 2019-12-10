@@ -172,6 +172,12 @@ class CareManagerOfficial extends React.Component {
                         />
                     </div>
 
+                    <div className="container component-wrapper">
+                        < CaregiverCheckboxArea
+                            data={data}
+                            visit={this.state.displayedVisit} />
+                    </div>
+
 
                     <div className="container component-wrapper">
                         {/*THIS DISPLAYS VISITS BY CURRENTLY SELECTED PATIENT */}

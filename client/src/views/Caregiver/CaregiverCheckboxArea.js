@@ -35,7 +35,8 @@ class CaregiverCheckbox extends React.Component {
       <div align="left">
         <h2>Visit Details:</h2>
         <h4>Manager's Notes:</h4>
-        <div align="left">{this.props.visit.managerNotes}</div>
+        <h5>
+          <div align="left">{this.props.visit.managerNotes}</div></h5>
         <form className="form" onSubmit={this.handleSubmit}>
 
         <TaskList
