@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormGroup, Input, Label} from "reactstrap";
+import {Input, Label} from "reactstrap";
 import axios from "axios";
 
 class CaregiverLogArea extends React.Component {
@@ -7,8 +7,8 @@ class CaregiverLogArea extends React.Component {
     super(props);
 
     this.state = {
-      startTime: null,
-      endTime: null
+      startTime: '',
+      endTime: ''
     }
 
 
@@ -68,12 +68,13 @@ class CaregiverLogArea extends React.Component {
                   onChange = {this.onChangeStartTime}
                   placeholder="time placeholder"
               />
+            </div>
 
             <button  onClick={this.handleCheckinSubmit} className="btn btn-primary">Check In</button>
-            </div>
 
           {/* Checkout form */}
             <div className="form-group">
+              <br/>
               <Label for="End Time">To:</Label>
               <Input
                   type="time"

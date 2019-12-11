@@ -4,7 +4,7 @@ class RecentLogs extends React.Component {
     render() {
       return (
         <div>
-          <p>Logs Area</p>
+          {/*<p>Logs Area</p>*/}
         </div>
       )
     }

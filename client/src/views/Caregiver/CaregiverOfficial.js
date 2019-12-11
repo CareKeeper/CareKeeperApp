@@ -5,7 +5,7 @@ import axios from 'axios';
 import PatientDropdown from './PatientDropdown.js';
 import CaregiverLogArea from './CaregiverLogArea.js';
 import RecentLogs from './RecentLogs.js'
-import WorkSched from './WorkSchedule.js'
+//import WorkSched from './WorkSchedule.js'
 import CaregiverCheckboxArea from './CaregiverCheckboxArea.js';
 import CalendarArea from './CalendarArea.js'
 import '../../stylesheets/Caregiver.css';
@@ -22,7 +22,10 @@ function OktaToAtlas(email) {
                         if(m.email.toLowerCase() === email.toLowerCase()) {
                             this.setState({
                                 userID: m._id
-                            }, () => console.log("USERID UPDATED: ", this.state.userID));
+                            }, () => {
+                              console.log("USERID UPDATED: ", this.state.userID)
+                              this.getVisits();
+                            });
                         }
                     }
                     catch {
@@ -71,7 +74,7 @@ class CaregiverOfficial extends React.Component {
     }
 
     changeCurrentPatient(_id) {
-        console.log(_id);
+        console.log("Current Patient ID: ", _id);
         this.setState(
             {
                 currentPatient: _id
@@ -104,13 +107,61 @@ class CaregiverOfficial extends React.Component {
         )
     }
 
+    //Next 3 functions copied from Care Manager Official with modifications
+    getVisits() {
+      let url = 'http://localhost:5000/api/visits/byCaregiver/' + this.state.userID;
+      axios.get(url)
+          .then(res => {
+              this.getPatientNames(res.data);
+          })
+          .catch(error => {
+              console.log(error);
+          })
+    }
+
+    getPatientNames(vis) {
+        //for each visit, retrieve patient name and add it to visit
+        return Promise.all(vis.map((v) => {
+            return axios.get('http://localhost:5000/api/patients/' + v.patient);
+        })).then(pats => {
+            let vWithNames = vis;
+            vWithNames.forEach((v,i) => {
+                v.patientName = pats[i].data.nickname;
+                if(i === vWithNames.length - 1) {
+                    this.getCareManagerNames(vWithNames);
+                }
+            })
+        })
+    }
+
+    getCareManagerNames(vis) {
+        //for each visit, retrieve caregiver name and add it to visit
+        return Promise.all(vis.map((v) => {
+            return axios.get('http://localhost:5000/api/managers/' + v.careManager);
+        })).then(mgs => {
+            let vWithNames = vis;
+            vWithNames.forEach((v,i) => {
+                v.careManagerName = mgs[i].data.username;
+                if(i === vWithNames.length - 1) {
+                    this.updateVisits(vWithNames);
+                }
+            })
+        })
+    }
+
+    updateVisits(vWithNames) {
+        this.setState({
+            visits: vWithNames
+        }, () => console.log("Visits with Names: ", this.state.visits))
+    }
+
     changeCurrentVisits(v) {
 
-          this.setState(
+          /*this.setState(
               {
                   visits: v
 
-              }, () => console.log("VISITS UPDATED: ", this.state.visits));
+              }, () => console.log("VISITS UPDATED: ", this.state.visits));*/
       }
 
 
@@ -123,6 +174,7 @@ class CaregiverOfficial extends React.Component {
             <div className="page-wrapper">
               <div className="component-wrapper LHS-wrapper">
                 < PatientDropdown
+                    visits={this.state.visits}
                     currentCaregiver={this.state.userID}
                     changeCurrentPatient={this.changeCurrentPatient.bind(this)}
                     changeCurrentVisits={this.changeCurrentVisits.bind(this)} />
@@ -144,7 +196,8 @@ class CaregiverOfficial extends React.Component {
             </div>
             <div className="page-wrapper">
               <div className="component-wrapper">
-                < WorkSched visits={this.state.visits}/>
+                {/*For testing, Displays ALL Visits for ALL Patients of this caregiver*/}
+                {/*< WorkSched visits={this.state.visits}/>*/}
               </div>
             </div>
           </div>

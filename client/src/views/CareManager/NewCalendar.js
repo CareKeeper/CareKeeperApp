@@ -20,8 +20,17 @@ class CalendarArea extends React.Component {
       date: new Date(),
       newDate: wholeDate,
       newTime: wholeTime,
+      visits: null,
     }
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.visits !== prevProps.visits) {
+      this.setState({
+        visits: this.props.visits
+      })
+    }
   }
 
   onChange = date => {
@@ -56,19 +65,18 @@ class CalendarArea extends React.Component {
 
       var visits;
 
-      if(this.props.visits !== null) {
-        visits = this.props.visits.map((v,i) => {
+      if(this.state.visits !== null) {
+        visits = this.state.visits.map((v,i) => {
           let thisVisit = v.scheduledDate;
           if(this.state.newDate === thisVisit) {
             return (
               <div className="text-left" key={i}>
-                <h6>Visit on {v.scheduledDate}</h6>
+                <h6>Visit on {v.scheduledDate} with {v.patientName}</h6>
                 <ul key={i}>
-                  <li>With Patient#: {v.patient}</li>
+                  <li>Caregiver: {v.caregiverName}</li>
                   <li>Start at: {v.scheduledStartTime}</li>
                   <li>End at: {v.scheduledFinishTime}</li>
                   <li>Notes: {v.managerNotes}</li>
-                  <li>ADL List Order: {v.ADLlist.order.map(n => n + " ")}</li>
                 </ul>
                 {/* <button onClick={this.changeDisplayedVisit.bind(this, v)}>Show ADL List</button> */}
               <br />
@@ -88,7 +96,8 @@ class CalendarArea extends React.Component {
           </div>
 
           <div>
-            <h6>Visits:</h6>
+            <br/>>
+            <h6>Visits On This Day:</h6>
             <div style={visitStyle}>
               {visits}
             </div>

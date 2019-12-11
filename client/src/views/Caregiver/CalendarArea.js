@@ -64,11 +64,11 @@ class CalendarArea extends React.Component {
               <div className="text-left" key={i}>
                 <h6>Visit on {v.scheduledDate}</h6>
                 <ul key={i}>
-                  <li>With Patient#: {v.patient}</li>
+                  <li>With: {v.careManagerName}'s {v.patientName}</li>
                   <li>Start at: {v.scheduledStartTime}</li>
                   <li>End at: {v.scheduledFinishTime}</li>
                   <li>Notes: {v.managerNotes}</li>
-                  <li>ADL List Order: {v.ADLlist.order.map(n => n + " ")}</li>
+                  {/*<li>ADL List Order: {v.ADLlist.order.map(n => n + " ")}</li>*/}
                 </ul>
                 {/* <button onClick={this.changeDisplayedVisit.bind(this, v)}>Show ADL List</button> */}
               </div>
@@ -87,7 +87,8 @@ class CalendarArea extends React.Component {
           </div>
 
           <div>
-            <h6>Visits:</h6>
+            <br/>
+            <h6>Visits On This Day:</h6>
             <div style={visitStyle}>
               {visits}
             </div>
