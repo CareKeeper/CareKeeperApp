@@ -89,7 +89,7 @@ export default class TestDisplayVisits extends React.Component {
       return (
   
           <div className="test-text">
-              <h3 className="text-center">Displaying Visits for {this.state.currentPatientName}</h3>
+              <h3 className="text-center">Displaying All Visits for {this.state.currentPatientName}</h3>
               {visits}
           </div>
         

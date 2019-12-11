@@ -11,13 +11,13 @@ import EditPatient from './edit-patient.component'
 import ScheduleVisits from './ScheduleVisits';
 import Invite from './Invite'
 import Notes from "./Notes"
-import CSVExport from "../../components/CSVExport";
-//import DoubleButton from '../../components/googleCalendar';
+//import CSVExport from "../../components/CSVExport";
+
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
 import Timesheet from './Timesheet';
-import CaregiverCheckboxArea from "../Caregiver/CaregiverCheckboxArea";
-import data from "../../dataADL";
+//import CaregiverCheckboxArea from "../Caregiver/CaregiverCheckboxArea";
+//import data from "../../dataADL";
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
@@ -87,19 +87,50 @@ class CareManagerOfficial extends React.Component {
     }
 
     getVisits() {
-        console.log("GET VISITS: ");
         let url = 'http://localhost:5000/api/visits/byManager/' + this.state.userID;
         axios.get(url)
             .then(res => {
-                this.setState({
-                    visits: res.data
-                }, () => {
-                    console.log("VISITS FOR THIS CARE MANAGER: ", this.state.visits);
-                });
+                this.getPatientNames(res.data);
             })
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    getPatientNames(vis) {
+        //for each visit, retrieve patient name and add it to visit
+        return Promise.all(vis.map((v) => {
+            return axios.get('http://localhost:5000/api/patients/' + v.patient);
+        })).then(pats => {
+            let vWithNames = vis;
+            vWithNames.forEach((v,i) => {
+                v.patientName = pats[i].data.nickname;
+                if(i === vWithNames.length - 1) {
+                    this.getCaregiverNames(vWithNames);
+                }
+            })
+        })
+    }
+
+    getCaregiverNames(vis) {
+        //for each visit, retrieve caregiver name and add it to visit
+        return Promise.all(vis.map((v) => {
+            return axios.get('http://localhost:5000/api/caregivers/' + v.caregiver);
+        })).then(cgs => {
+            let vWithNames = vis;
+            vWithNames.forEach((v,i) => {
+                v.caregiverName = cgs[i].data.username;
+                if(i === vWithNames.length - 1) {
+                    this.updateVisits(vWithNames);
+                }
+            })
+        })
+    }
+
+    updateVisits(vWithNames) {
+        this.setState({
+            visits: vWithNames
+        }, () => console.log("Visits with Names: ", this.state.visits))
     }
 
     changeCurrentPatient(_id) {

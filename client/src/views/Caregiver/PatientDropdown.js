@@ -1,5 +1,3 @@
-//This file loads the visits as well as the patients for the caregiver
-
 import React from 'react';
 import axios from 'axios';
 
@@ -26,39 +24,54 @@ class PatientDropdown extends React.Component {
     })
   }
 
+  getCareManagerNames(pats) {
+    //for each patient object, retrieve manager name
+    return Promise.all(pats.map((p) => {
+        return axios.get('http://localhost:5000/api/managers/' + p.careManager);
+    })).then(mgs => {
+        let pWithNames = pats;
+        pWithNames.forEach((p,i) => {
+            p.careManagerName = mgs[i].data.username;
+            if(i === pWithNames.length - 1) {
+                this.updatePatientList(pWithNames);
+            }
+        })
+    })
+}
+
   getPatientList() {
-    let patObjs = [];
-    let pats = [...new Set(this.state.visits.map(v => v.patient))];
+    let patIDs = [...new Set(this.props.visits.map(v => v.patient))];
     
+    //for each patient id, retrieve patient object
+    return Promise.all(patIDs.map((p) => {
+      return axios.get('http://localhost:5000/api/patients/' + p);
+    })).then(pats => {
+      let newPats = pats.map(p => p.data);
+      this.getCareManagerNames(newPats);
+    })
+
+    // This is old code replaced by the above code.
+    // Reason: Above code ensures that all axios calls are made before moving on.
+    // Keeping old code just in case.
+    /*
+    let patObjs = [];
     pats.forEach((p,i,arr) => {
       axios.get('http://localhost:5000/api/patients/' + p)
         .then(res => {
           patObjs.push(res.data);
           if(i === (arr.length - 1)) {
-            this.updatePatientList(patObjs);
+            this.getCareManagerNames(patObjs);
           }
         })
         .catch((error) => console.log("This patient does not exist. ", error));
-    })
+    })*/
   };
 
-  updateVisits() {
-    let url = 'http://localhost:5000/api/visits/byCaregiver/' + this.props.currentCaregiver;
-    axios.get(url)
-        .then(res => {
-            this.setState({
-                visits: res.data
-            }, () => {
-              this.props.changeCurrentVisits(this.state.visits);
-              this.getPatientList()
-            });
-        })
-        .catch(error => console.log(error));
-  }
-
   componentDidUpdate(prevProps) {
-    if(this.props.currentCaregiver !== prevProps.currentCaregiver) {
-        this.updateVisits();
+    if(this.props.visits !== prevProps.visits) {
+      if(this.props.visits !== null) {
+        this.getPatientList();
+      }
     }
   }
 
@@ -78,7 +91,7 @@ class PatientDropdown extends React.Component {
           <select className="form-control" ref="patientSelect"
               onChange={this.changeCurrentPatient.bind(this)} >
                 {this.state.patients.map(m => 
-                    <option key={m._id} value={m._id}>{m.nickname} - CareManagerID: {m.careManager}</option>
+                    <option key={m._id} value={m._id}>{m.careManagerName}'s {m.nickname}</option>
                 )}
           </select>
         </div>
