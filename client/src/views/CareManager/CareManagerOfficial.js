@@ -16,8 +16,8 @@ import Notes from "./Notes"
 import NewCalendar from './NewCalendar';
 import TestDisplayVisits from './test-display-visits.component';
 import Timesheet from './Timesheet';
-//import CaregiverCheckboxArea from "../Caregiver/CaregiverCheckboxArea";
-//import data from "../../dataADL";
+import CaregiverCheckboxArea from "../Caregiver/CaregiverCheckboxArea";
+import data from "../../dataADL";
 
 //function that takes Okta Token and links to Atlas database by email (for now)
 function OktaToAtlas(email) {
